@@ -25,7 +25,7 @@ class CardsetViewCard extends StatelessWidget {
     return GestureDetector(
         onTap: () async {
           print('Tap');
-          UserCredential? user = await AuthWithGoogle.signInWithGoogle();
+
           //callUsers();
         },
         child: Container(
