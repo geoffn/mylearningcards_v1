@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/card_sets_view.dart';
+import 'package:mylearningcards_v1/conf/conf_dev.dart';
+import 'package:http/http.dart' as http;
+import 'package:mylearningcards_v1/components/jwt.dart';
+import 'dart:convert';
 
 class WelcomeMain extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -18,24 +22,46 @@ class _WelcomeMainState extends State<WelcomeMain> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCurrentUser();
+    final loggedInUser = getCurrentUser();
+    print('LoggedIn: $loggedInUser');
+    if (loggedInUser != null) {
+      if (loggedInUser.providerData[0].uid != null) {
+        var newID = loggedInUser.providerData[0].uid != null
+            ? loggedInUser.providerData[0].uid
+            : '0';
+        generateCardsetView(newID);
+      }
+    }
   }
 
-  void getCurrentUser() {
+  User? getCurrentUser() {
     try {
       final user = _auth.currentUser;
       if (user != null) {
         final User loggedInUser = user;
         print(loggedInUser.displayName);
-        if (loggedInUser != null) {}
+        return user;
       } else {
         print('User is null');
       }
     } catch (e) {
       print(e);
     }
+  }
 
-    print('gotuser');
+  void generateCardsetView(String? userId) async {
+    var url = Uri.parse('$cardsAPI/cardsetforowner');
+    var token = JWTGenerator.createJWT(userId);
+
+    http.Response response = await http.get(
+      Uri.parse('$cardsAPI/cardsetforowner'),
+      // Send authorization headers to the backend.
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+    print(response.statusCode);
+    print(response.body);
   }
 
   @override

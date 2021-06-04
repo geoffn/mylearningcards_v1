@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                   try {
                     final user = await AuthWithGoogle.signInWithGoogle();
                     if (user != null) {
-                      print(user);
+                      print(user.user);
                     }
                     Navigator.pushNamed(context, WelcomeMain.id);
                   } catch (e) {

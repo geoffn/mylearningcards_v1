@@ -5,13 +5,12 @@ import 'dart:io';
 
 class JWTGenerator {
 //b11f795fff4ae42738c02299772e7afb58141330d09690d90e1bee4fcd964bbb7f657695cdd809e2c2088936ce60db9d324979237fb1bc55ed8d52594ff8d301
-  String createJWT(String userId) {
+  static String createJWT(String? userId) {
 // Create a json web token
-    String jwtUser = userId;
-
+    print('UserId for JWT: $userId');
     final jwt = JWT(
       {
-        'id': userId,
+        'uid': userId,
       },
       issuer: 'https://github.com/jonasroussel/jsonwebtoken',
     );
