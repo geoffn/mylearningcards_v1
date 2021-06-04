@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mylearningcards_v1/pages/card_sets_view.dart';
+import 'package:mylearningcards_v1/components/card_sets_view.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 import 'pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';

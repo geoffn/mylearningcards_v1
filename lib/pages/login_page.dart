@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mylearningcards_v1/components/card_set.dart';
 import 'package:mylearningcards_v1/components/oauth.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'card_sets_view.dart';
+import '../components/card_sets_view.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 
