@@ -48,3 +48,6 @@ app.*.map.json
 
 /lib/conf/conf_dev.dart
 
+/ios/Runner/GoogleService-Info.plist
+
+
