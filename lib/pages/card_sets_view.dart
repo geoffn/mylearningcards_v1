@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mylearningcards_v1/components/oauth.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/jwt.dart';
+import 'package:mylearningcards_v1/components/oauth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CardsetViewCard extends StatelessWidget {
+  static String id = 'card_sets_view';
   CardsetViewCard(
       {required this.cardsetName,
       required this.cardsetDescription,
@@ -19,8 +23,9 @@ class CardsetViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
+        onTap: () async {
           print('Tap');
+          UserCredential? user = await AuthWithGoogle.signInWithGoogle();
           callUsers();
         },
         child: Container(

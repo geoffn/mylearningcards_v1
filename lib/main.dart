@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mylearningcards_v1/pages/card_sets_view.dart';
+import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 import 'pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:mylearningcards_v1/components/oauth.dart';
 
-void main() => runApp(MyLearningCards());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyLearningCards());
+}
 
 class MyLearningCards extends StatelessWidget {
   @override
@@ -16,7 +24,11 @@ class MyLearningCards extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.white),
         ),
       ),
-      home: LoginPage(),
+      initialRoute: LoginPage.id,
+      routes: {
+        LoginPage.id: (context) => LoginPage(),
+        WelcomeMain.id: (context) => WelcomeMain(),
+      },
     );
   }
 }

@@ -21,6 +21,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   dart_jsonwebtoken: ^2.2.0
   http: ^0.13.3
+  firebase_auth: ^1.2.0
+  firebase_core: ^1.2.0
+  google_sign_in: ^5.0.4
 
 dev_dependencies:
   flutter_test:
