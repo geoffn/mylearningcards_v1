@@ -7,6 +7,7 @@ import 'package:mylearningcards_v1/constants.dart';
 import '../components/card_sets_view.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/components/main_drawer.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = 'login_screen';
@@ -36,37 +37,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('MyLearningCards', style: kCardsetCards),
         backgroundColor: kSecondCardText,
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0xFF11698E),
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Color(0xFFFFEE93),
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.message),
-              title: Text('Messages'),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
-        ),
-      ),
+      drawer: MainDrawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,

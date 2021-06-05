@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/components/card_sets_view.dart';
+import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 import 'pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +29,7 @@ class MyLearningCards extends StatelessWidget {
       routes: {
         LoginPage.id: (context) => LoginPage(),
         WelcomeMain.id: (context) => WelcomeMain(),
+        NewCardset.id: (context) => NewCardset(),
       },
     );
   }
