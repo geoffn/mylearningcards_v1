@@ -37,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('MyLearningCards', style: kCardsetCards),
         backgroundColor: kSecondCardText,
       ),
-      drawer: MainDrawer(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,

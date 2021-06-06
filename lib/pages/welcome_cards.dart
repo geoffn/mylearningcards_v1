@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mylearningcards_v1/components/main_drawer.dart';
+
 import 'package:mylearningcards_v1/components/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/card_sets_view.dart';
@@ -22,6 +22,23 @@ class _WelcomeMainState extends State<WelcomeMain> {
   final _auth = FirebaseAuth.instance;
   User? loggedInUser;
   final uFunctions = UserFunctions();
+  String userName = "";
+  String userEmail = "";
+  String userPicture = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        userName = user.providerData[0].displayName ?? "Missing";
+        userEmail = user.providerData[0].email ?? "Missing";
+        userPicture = user.providerData[0].photoURL ?? "Missing";
+      }
+    } catch (e) {}
+  }
 
   @override
   Future<List<CardsetViewCard>> _generateCardsetView() async {
@@ -74,100 +91,79 @@ class _WelcomeMainState extends State<WelcomeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('MyLearningCards', style: kCardsetCards),
-          backgroundColor: kSecondCardText,
-        ),
-        drawer: MainDrawer(),
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                child: GestureDetector(
-                  onTap: () async {
-                    Navigator.pushNamed(context, NewCardset.id);
+      appBar: AppBar(
+        title: Text('MyLearningCards', style: kCardsetCards),
+        backgroundColor: kSecondCardText,
+      ),
+      drawer: new MainDrawer(
+          userName: userName, userEmail: userEmail, userPicture: userPicture),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: FutureBuilder(
+                future: _generateCardsetView(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print(snapshot.data);
+                  if (snapshot.data == null) {
+                    return Container(child: Center(child: Text("Loading...")));
+                  } else {
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                            onTap: () async {
+                              print('Tap');
 
-                    //callUsers();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: kSecondCardText,
-                        borderRadius: BorderRadius.circular(10.0)),
-                    margin: EdgeInsets.all(15.0),
-                    child: Column(children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Text('New Card Set', style: kCardsetCards),
-                        ],
-                      ),
-                    ]),
-                  ),
-                ),
+                              //callUsers();
+                            },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    color: kSecondCardText,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                margin:
+                                    EdgeInsets.only(top: 5, right: 5, left: 5),
+                                child: Column(
+                                  children: <Widget>[
+                                    Column(
+                                      children: <Widget>[
+                                        Text(snapshot.data[index].cardsetName,
+                                            style: kCardsetCards),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        Text(
+                                            snapshot
+                                                .data[index].cardsetDescription,
+                                            style: kCardsetData),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        Text(
+                                            'Cards : ${snapshot.data[index].cardsetCardCount}    Accessed: ${snapshot.data[index].cardsetAccessedCount}',
+                                            style: kCardsetData),
+                                      ],
+                                    ),
+                                  ],
+                                )));
+                      },
+                    );
+                  }
+                },
               ),
-              Expanded(
-                child: FutureBuilder(
-                  future: _generateCardsetView(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    print(snapshot.data);
-                    if (snapshot.data == null) {
-                      return Container(
-                          child: Center(child: Text("Loading...")));
-                    } else {
-                      return ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                              onTap: () async {
-                                print('Tap');
-
-                                //callUsers();
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      color: kSecondCardText,
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  margin: EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          Text(snapshot.data[index].cardsetName,
-                                              style: kCardsetCards),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                        height: 20,
-                                      ),
-                                      Column(
-                                        children: <Widget>[
-                                          Text(
-                                              snapshot.data[index]
-                                                  .cardsetDescription,
-                                              style: kCardsetData),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                        height: 20,
-                                      ),
-                                      Column(
-                                        children: <Widget>[
-                                          Text(
-                                              'Cards : ${snapshot.data[index].cardsetCardCount}    Accessed: ${snapshot.data[index].cardsetAccessedCount}',
-                                              style: kCardsetData),
-                                        ],
-                                      ),
-                                    ],
-                                  )));
-                        },
-                      );
-                    }
-                  },
-                ),
-              ),
-            ]));
+            ),
+          ]),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(context, NewCardset.id);
+        },
+        label: const Text('Add Card Set'),
+        icon: const Icon(Icons.add),
+        backgroundColor: kSecondCardText,
+      ),
+    );
   }
 }
