@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     try {
       final user = _auth.currentUser;
       if (user != null) {
-        Navigator.pushNamed(context, CardsetViewCard.id);
+        //Navigator.pushNamed(context, CardsetViewCard.id);
       }
     } catch (e) {}
   }

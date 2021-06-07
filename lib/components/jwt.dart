@@ -7,7 +7,7 @@ class JWTGenerator {
 //b11f795fff4ae42738c02299772e7afb58141330d09690d90e1bee4fcd964bbb7f657695cdd809e2c2088936ce60db9d324979237fb1bc55ed8d52594ff8d301
   static String createJWT(String? userId) {
 // Create a json web token
-    print('UserId for JWT: $userId');
+    //print('UserId for JWT: $userId');
     final jwt = JWT(
       {
         'uid': userId,
@@ -18,7 +18,7 @@ class JWTGenerator {
 // Sign it (default with HS256 algorithm)
     var token = jwt.sign(SecretKey(secretJWTKey));
 
-    print('Signed token: $token\n');
+    //print('Signed token: $token\n');
     return token;
   }
 
@@ -34,7 +34,7 @@ class JWTGenerator {
       },
     );
 
-    print(response.statusCode);
-    print(response.body);
+    //print(response.statusCode);
+    //print(response.body);
   }
 }

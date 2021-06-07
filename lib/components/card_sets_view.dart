@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mylearningcards_v1/components/oauth.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/components/jwt.dart';
-import 'package:mylearningcards_v1/components/oauth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mylearningcards_v1/pages/card_view_screen.dart';
 
 class CardsetViewCard extends StatelessWidget {
   static String id = 'card_sets_view';
   CardsetViewCard(
-      {required this.cardsetName,
+      {required this.cardsetID,
+      required this.cardsetName,
       required this.cardsetDescription,
       required this.cardsetCreateDate,
       required this.cardsetAccessedCount,
       required this.cardsetCardCount});
 
+  final String cardsetID;
   final String cardsetName;
   final String cardsetDescription;
   final String cardsetCreateDate;
@@ -24,7 +23,8 @@ class CardsetViewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
-          print('Tap');
+          Navigator.pushNamed(context, CardViewMain.id, arguments: cardsetID);
+          print('Nav Send $cardsetID');
 
           //callUsers();
         },

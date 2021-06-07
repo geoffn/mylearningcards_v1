@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/components/card_sets_view.dart';
+import 'package:mylearningcards_v1/pages/card_view_screen.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 import 'pages/login_page.dart';
@@ -30,6 +31,7 @@ class MyLearningCards extends StatelessWidget {
         LoginPage.id: (context) => LoginPage(),
         WelcomeMain.id: (context) => WelcomeMain(),
         NewCardset.id: (context) => NewCardset(),
+        CardViewMain.id: (context) => CardViewMain(),
       },
     );
   }
