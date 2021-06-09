@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:mylearningcards_v1/components/user_functions.dart';
+import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/card_sets_view.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
-import 'package:mylearningcards_v1/pages/card_view_screen.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 
 class WelcomeMain extends StatefulWidget {
@@ -71,7 +70,7 @@ class _WelcomeMainState extends State<WelcomeMain> {
 
     //print('cardData: $cardData');
 
-    List<CardsetViewCard> Cardsets = [];
+    List<CardsetViewCard> cardsets = [];
 
     for (var card in cardData) {
       CardsetViewCard cardset = CardsetViewCard(
@@ -82,11 +81,11 @@ class _WelcomeMainState extends State<WelcomeMain> {
           cardsetAccessedCount: card["access_count"],
           cardsetCardCount: card["cards"].length);
       //print("In For Loop");
-      Cardsets.add(cardset);
+      cardsets.add(cardset);
       //print(card["set_name"]);
     }
 
-    return Cardsets;
+    return cardsets;
   }
 
   @override

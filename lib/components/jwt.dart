@@ -1,10 +1,8 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'dart:io';
 
 class JWTGenerator {
-//b11f795fff4ae42738c02299772e7afb58141330d09690d90e1bee4fcd964bbb7f657695cdd809e2c2088936ce60db9d324979237fb1bc55ed8d52594ff8d301
   static String createJWT(String? userId) {
 // Create a json web token
     //print('UserId for JWT: $userId');
@@ -23,7 +21,6 @@ class JWTGenerator {
   }
 
   void callUsers() async {
-    var url = Uri.parse('$cardsAPI/users');
     var token = createJWT("434343");
 
     http.Response response = await http.get(

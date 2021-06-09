@@ -1,13 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mylearningcards_v1/components/card_set.dart';
 import 'package:mylearningcards_v1/components/oauth.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import '../components/card_sets_view.dart';
-import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
-import 'package:mylearningcards_v1/components/main_drawer.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = 'login_screen';

@@ -18,3 +18,9 @@ const kCardsetData = TextStyle(
   fontSize: 25,
   color: Colors.white,
 );
+
+const kCardsetBackCards = TextStyle(
+  fontSize: 30.0,
+  color: Color(0xFFFFEE93),
+  fontWeight: FontWeight.bold,
+);

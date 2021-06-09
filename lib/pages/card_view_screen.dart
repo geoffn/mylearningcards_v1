@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:mylearningcards_v1/components/user_functions.dart';
+import 'package:mylearningcards_v1/components/scratchpad/editcardset_scratch.dart';
+import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
+import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/card_view.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
@@ -9,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
+import 'package:mylearningcards_v1/pages/edit_cardset.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 
 class CardViewMain extends StatefulWidget {
@@ -26,6 +28,7 @@ class _CardViewMainState extends State<CardViewMain> {
   String userEmail = "";
   String userPicture = "";
   String cardsetID = "";
+  CardsetFunctions cFunctions = CardsetFunctions();
 
   @override
   void initState() {
@@ -39,52 +42,6 @@ class _CardViewMainState extends State<CardViewMain> {
         userPicture = user.providerData[0].photoURL ?? "Missing";
       }
     } catch (e) {}
-  }
-
-  Future<List<CardViewCard>> _generateCardView(String CardsetID) async {
-    final loggedInUser = uFunctions.getCurrentUser();
-    String? newID = "";
-    //print('LoggedIn: $loggedInUser');
-    if (loggedInUser != null) {
-      if (loggedInUser.providerData[0].uid != null) {
-        newID = loggedInUser.providerData[0].uid != null
-            ? loggedInUser.providerData[0].uid
-            : '0';
-      }
-    }
-
-    var token = JWTGenerator.createJWT(newID);
-
-    http.Response response = await http.get(
-      Uri.parse('$cardsAPI/cardset/$CardsetID'),
-      // Send authorization headers to the backend.
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-    );
-    print(response.statusCode);
-    //print(response.body);
-
-    var cardDataResults = json.decode(response.body);
-    print('CVS- $cardDataResults');
-    var cardData = cardDataResults["results"][0];
-    var allCards = cardData["cards"];
-
-    List<CardViewCard> Cardsets = [];
-
-    for (var card in allCards) {
-      CardViewCard cardset = CardViewCard(
-        cardID: card["_id"],
-        cardPrimary: card["primary_word"],
-        cardSecondary: card["secondary_word"],
-        cardCategory: card["category"],
-      );
-      print("In For Loop");
-      Cardsets.add(cardset);
-      print(card["_id"]);
-    }
-
-    return Cardsets;
   }
 
   @override
@@ -109,7 +66,7 @@ class _CardViewMainState extends State<CardViewMain> {
           children: <Widget>[
             Expanded(
               child: FutureBuilder(
-                future: _generateCardView(cardsetID),
+                future: cFunctions.generateCardView(cardsetID),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   print(snapshot.data);
                   if (snapshot.data == null) {
@@ -133,10 +90,11 @@ class _CardViewMainState extends State<CardViewMain> {
           ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, NewCardset.id);
+          Navigator.pushNamed(context, EditCardsetScratch.id,
+              arguments: cardsetID);
         },
-        label: const Text('Add Card Set'),
-        icon: const Icon(Icons.add),
+        label: const Text('Edit Set'),
+        icon: const Icon(Icons.edit),
         backgroundColor: kSecondCardText,
       ),
     );
