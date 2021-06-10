@@ -11,6 +11,7 @@ import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset.dart';
+import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 
 class CardViewMain extends StatefulWidget {
@@ -90,7 +91,7 @@ class _CardViewMainState extends State<CardViewMain> {
           ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, EditCardsetScratch.id,
+          Navigator.pushNamed(context, EditCardsetOptions.id,
               arguments: cardsetID);
         },
         label: const Text('Edit Set'),

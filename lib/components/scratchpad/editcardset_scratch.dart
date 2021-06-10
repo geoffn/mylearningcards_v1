@@ -55,66 +55,77 @@ class _EditCardsetScratchState extends State<EditCardsetScratch> {
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Column(children: <Widget>[
-        NewCardset(),
+        //NewCardset(),
         Expanded(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Expanded(
-                  child: CustomScrollView(slivers: <Widget>[
-                    SliverAppBar(
-                      iconTheme: IconThemeData(
-                        color: Colors.black,
-                      ),
-                      backgroundColor: Colors.red,
-                      expandedHeight: 100,
-                      pinned: true,
-                      floating: true,
-                      flexibleSpace: FlexibleSpaceBar(
-                        title: Text(
-                          'Assigned Cards',
-                          style: TextStyle(color: Colors.black),
+                  child: CustomScrollView(
+                    slivers: <Widget>[
+                      SliverAppBar(
+                        iconTheme: IconThemeData(
+                          color: Colors.black,
+                        ),
+                        backgroundColor: kSecondCardText,
+                        expandedHeight: 100,
+                        pinned: true,
+                        floating: true,
+                        flexibleSpace: FlexibleSpaceBar(
+                          title: Text(
+                            'Assigned Cards',
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
                       ),
-                    ),
-                    FutureBuilder(
-                        future: cFunctions.generateCardView(cardsetID),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          //                Whether project = projectSnap.data[index]; //todo check your model
-                          var childCount = 0;
-                          if (snapshot.connectionState !=
-                                  ConnectionState.done ||
-                              snapshot.data == null)
-                            childCount = 1;
-                          else
-                            childCount = snapshot.data.length;
-                          return SliverList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                              if (snapshot.connectionState !=
-                                  ConnectionState.done) {
-                                //todo handle state
-                                return CircularProgressIndicator(); //todo set progress bar
-                              }
-                              if (snapshot.hasData == false) {
-                                return Container();
-                              }
-                              return Card(
-                                margin: EdgeInsets.fromLTRB(30, 3, 30, 3),
-                                color: Colors.black12,
-                                child: new ListTile(
-                                  leading: Icon(Icons.delete),
-                                  title: new Text(
-                                      snapshot.data[index].cardPrimary,
-                                      style:
-                                          new TextStyle(color: Colors.white)),
-                                ),
-                              );
-                            }, childCount: childCount),
-                          );
-                        }),
+                      FutureBuilder(
+                          future: cFunctions.generateCardView(cardsetID),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            //                Whether project = projectSnap.data[index]; //todo check your model
+                            var childCount = 0;
+                            if (snapshot.connectionState !=
+                                    ConnectionState.done ||
+                                snapshot.data == null)
+                              childCount = 1;
+                            else
+                              childCount = snapshot.data.length;
+                            return SliverList(
+                              delegate:
+                                  SliverChildBuilderDelegate((context, index) {
+                                if (snapshot.connectionState !=
+                                    ConnectionState.done) {
+                                  //todo handle state
+                                  return CircularProgressIndicator(); //todo set progress bar
+                                }
+                                if (snapshot.hasData == false) {
+                                  return Container();
+                                }
+                                return Card(
+                                  margin: EdgeInsets.fromLTRB(30, 3, 30, 3),
+                                  color: Colors.black12,
+                                  child: new ListTile(
+                                    leading: GestureDetector(
+                                        onTap: () {
+                                          print(
+                                              "id ${snapshot.data[index].cardID}");
+                                        },
+                                        child: Icon(Icons.delete)),
+                                    title: new Text(
+                                        snapshot.data[index].cardPrimary,
+                                        style:
+                                            new TextStyle(color: Colors.white)),
+                                  ),
+                                );
+                              }, childCount: childCount),
+                            );
+                          })
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: CustomScrollView(slivers: <Widget>[
                     SliverAppBar(
                       iconTheme: IconThemeData(
                         color: Colors.black,
@@ -166,30 +177,6 @@ class _EditCardsetScratchState extends State<EditCardsetScratch> {
               ]),
         ),
       ]),
-    );
-  }
-
-  Card _buildListItem(String primaryWord, String cardId) {
-    return Card(
-      margin: const EdgeInsets.all(5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 10, right: 10, bottom: 10, top: 0),
-              child: Text(
-                primaryWord,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

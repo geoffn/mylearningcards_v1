@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/components/scratchpad/editcardset_scratch.dart';
 import 'package:mylearningcards_v1/pages/card_view_screen.dart';
+import 'package:mylearningcards_v1/pages/edit_add_created_card.dart';
+import 'package:mylearningcards_v1/pages/edit_add_new_card.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset.dart';
+import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
+import 'package:mylearningcards_v1/pages/edit_remove_assigned_card.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 import 'pages/login_page.dart';
@@ -34,6 +38,10 @@ class MyLearningCards extends StatelessWidget {
         CardViewMain.id: (context) => CardViewMain(),
         EditCardset.id: (context) => EditCardset(),
         EditCardsetScratch.id: (context) => EditCardsetScratch(),
+        EditCardsetOptions.id: (context) => EditCardsetOptions(),
+        AddNewCard.id: (context) => AddNewCard(),
+        AddCreatedCard.id: (context) => AddCreatedCard(),
+        RemoveAssignedCard.id: (context) => RemoveAssignedCard(),
       },
     );
   }
