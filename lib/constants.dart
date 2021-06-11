@@ -19,6 +19,11 @@ const kCardsetData = TextStyle(
   color: Colors.white,
 );
 
+const kCardsetDataSmall = TextStyle(
+  fontSize: 20,
+  color: Colors.white,
+);
+
 const kCardsetBackCards = TextStyle(
   fontSize: 30.0,
   color: Color(0xFFFFEE93),

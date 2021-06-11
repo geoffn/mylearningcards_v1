@@ -52,32 +52,108 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
       ),
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
-      body: Center(
+      body: Container(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AddNewCard.id,
-                    arguments: cardsetID);
-              },
-              child: const Text('Add New Card'),
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(
+                left: 10.0,
+                right: 10.0,
+                top: 5,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: kSecondCardText,
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Edit Card set Name",
+                      style: kCardsetData,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AddCreatedCard.id,
-                    arguments: cardsetID);
-              },
-              child: const Text('Add Existing Card'),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: kSecondCardText,
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Create a new card and assign it to the current card set.  If you have already created the card or are using a card from a different card set then you can add and existing card below.",
+                      style: kCardsetDataSmall,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AddNewCard.id,
+                            arguments: cardsetID);
+                      },
+                      child: const Text('Add New Card'),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RemoveAssignedCard.id,
-                    arguments: cardsetID);
-              },
-              child: const Text('Remove Card'),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: kSecondCardText,
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Add an existing card to this card set.",
+                      style: kCardsetDataSmall,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AddCreatedCard.id,
+                            arguments: cardsetID);
+                      },
+                      child: const Text('Add Existing Card'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: kSecondCardText,
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Remove a card from the current card set.",
+                      style: kCardsetDataSmall,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, RemoveAssignedCard.id,
+                            arguments: cardsetID);
+                      },
+                      child: const Text('Remove Card'),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
