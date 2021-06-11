@@ -6,8 +6,9 @@ import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 
 class AddCardToSet extends StatefulWidget {
-  AddCardToSet({required this.cardsetID});
+  AddCardToSet({required this.cardsetID, required this.searchTerm});
   String cardsetID;
+  String searchTerm;
 
   @override
   _AddCardToSetState createState() => _AddCardToSetState();
@@ -22,59 +23,74 @@ class _AddCardToSetState extends State<AddCardToSet> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: CustomScrollView(slivers: <Widget>[
-              SliverAppBar(
-                automaticallyImplyLeading: false,
-                iconTheme: IconThemeData(
-                  color: kSecondCardText,
-                ),
-                backgroundColor: kSecondCardText,
-                expandedHeight: 50,
-                pinned: true,
-                floating: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text(
-                    'Available Cards',
-                    style: TextStyle(color: Colors.white),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: CustomScrollView(slivers: <Widget>[
+                SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  iconTheme: IconThemeData(
+                    color: kSecondCardText,
                   ),
-                ),
-              ),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  Container(
-                    child: FutureBuilder(
-                      future: cFunctions.generateAvailalbeCards(null),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        if (snapshot.data == null) {
-                          return Container(
-                              child: Center(child: Text("Loading...")));
-                        } else
-                          return ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (BuildContext content, int index) {
-                                return snapshot.hasData
-                                    ? Card(
-                                        child: ListTile(
-                                            title: Text(snapshot
-                                                .data[index].cardPrimary)),
-                                      )
-                                    : Text('No Data');
-                              });
-                      },
+                  backgroundColor: kSecondCardText,
+                  expandedHeight: 50,
+                  pinned: true,
+                  floating: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Text(
+                      'Available Cards',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                ]),
-              )
-            ]),
-          ),
-        ],
-      ),
+                ),
+                FutureBuilder(
+                  future: cFunctions.generateAvailalbeCards(widget.searchTerm),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    //                Whether project = projectSnap.data[index]; //todo check your model
+                    var childCount = 0;
+                    if (snapshot.connectionState != ConnectionState.done ||
+                        snapshot.data == null)
+                      childCount = 1;
+                    else
+                      childCount = snapshot.data.length;
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        if (snapshot.connectionState != ConnectionState.done) {
+                          //todo handle state
+                          return CircularProgressIndicator(); //todo set progress bar
+                        }
+                        if (snapshot.hasData == false) {
+                          return Container();
+                        }
+                        return Card(
+                          margin: EdgeInsets.fromLTRB(30, 3, 30, 3),
+                          color: cardColor,
+                          child: new ListTile(
+                            leading: GestureDetector(
+                                onTap: () async {
+                                  print("icon tapped");
+                                  print(
+                                      "id of card: ${snapshot.data[index].cardID} for cardset ${widget.cardsetID}");
+                                  cFunctions.addCardToCardsetFunction(
+                                      widget.cardsetID,
+                                      snapshot.data[index].cardID);
+                                  setState(() {
+                                    cardColor = kSecondCardText;
+                                  });
+                                },
+                                child: Icon(Icons.add)),
+                            title: new Text(snapshot.data[index].cardPrimary,
+                                style: new TextStyle(color: Colors.white)),
+                          ),
+                        );
+                      }, childCount: childCount),
+                    );
+                  },
+                ),
+              ]),
+            )
+          ]),
     );
   }
 }

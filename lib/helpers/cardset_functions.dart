@@ -72,13 +72,15 @@ class CardsetFunctions {
 
     var token = JWTGenerator.createJWT(newID);
 
-    if (searchTerm != null) {
+    if (searchTerm != null && searchTerm != '') {
       searchParam = '/${searchTerm}';
       searchURL = '$cardsAPI/cardsearch/$newID$searchParam';
     } else {
       searchURL = '$cardsAPI/card/$newID';
     }
 
+    print('Search Term : $searchTerm');
+    print('Search URL: $searchURL');
     http.Response response = await http.get(
       Uri.parse(searchURL),
       // Send authorization headers to the backend.

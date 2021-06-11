@@ -121,7 +121,8 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AddCreatedCard.id,
+                        Navigator.pushReplacementNamed(
+                            context, AddCreatedCard.id,
                             arguments: cardsetID);
                       },
                       child: const Text('Add Existing Card'),

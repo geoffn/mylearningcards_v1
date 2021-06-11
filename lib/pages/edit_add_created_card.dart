@@ -7,6 +7,8 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/components/add_card_to_set.dart';
+import 'package:mylearningcards_v1/components/search_available_cards.dart';
+import 'dart:convert';
 
 class AddCreatedCard extends StatefulWidget {
   static String id = 'edit_add_created_card';
@@ -23,6 +25,7 @@ class _AddCreatedCardState extends State<AddCreatedCard> {
   String userEmail = "";
   String userPicture = "";
   String cardsetID = "";
+  String searchTerm = "";
   CardsetFunctions cFunctions = CardsetFunctions();
 
   void initState() {
@@ -43,7 +46,17 @@ class _AddCreatedCardState extends State<AddCreatedCard> {
     if (route != null) {
       final map = route.settings.arguments;
       print('PassedCardSetID $map');
-      cardsetID = map.toString();
+      if (map.toString().contains('/')) {
+        var tempString = map.toString().replaceFirst('{', '');
+        tempString = tempString.replaceFirst('}', '');
+        var searchParam = tempString.split('/');
+        cardsetID = searchParam[0];
+        searchTerm = searchParam[1];
+      } else {
+        cardsetID = map.toString();
+      }
+      print('cardsetid $cardsetID');
+      print('searchterm $searchTerm');
     }
 
     return Scaffold(
@@ -82,7 +95,8 @@ class _AddCreatedCardState extends State<AddCreatedCard> {
                 ),
               ),
             ),
-            AddCardToSet(cardsetID: cardsetID),
+            SearchAvailableCards(cardsetID: cardsetID),
+            AddCardToSet(cardsetID: cardsetID, searchTerm: searchTerm),
           ],
         ),
       ),
