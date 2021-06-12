@@ -10,6 +10,7 @@ import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
+import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class WelcomeMain extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -91,10 +92,7 @@ class _WelcomeMainState extends State<WelcomeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MyLearningCards', style: kCardsetCards),
-        backgroundColor: kSecondCardText,
-      ),
+      appBar: new MainAppBar(),
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Column(

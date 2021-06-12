@@ -6,6 +6,8 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/pages/edit_add_created_card.dart';
 import 'package:mylearningcards_v1/pages/edit_add_new_card.dart';
 import 'package:mylearningcards_v1/pages/edit_remove_assigned_card.dart';
+import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class EditCardsetOptions extends StatefulWidget {
   static String id = 'editcardsetoptions_screen';
@@ -46,10 +48,7 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
       cardsetID = map.toString();
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MyLearningCards', style: kCardsetCards),
-        backgroundColor: kSecondCardText,
-      ),
+      appBar: new MainAppBar(),
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Container(

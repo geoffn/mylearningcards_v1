@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class NewCardset extends StatefulWidget {
   static String id = 'NewCardSet';
@@ -78,10 +79,7 @@ class _NewCardsetState extends State<NewCardset> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MyLearningCards', style: kCardsetCards),
-        backgroundColor: kSecondCardText,
-      ),
+      appBar: new MainAppBar(),
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Container(

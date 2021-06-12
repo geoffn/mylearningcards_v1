@@ -23,7 +23,8 @@ class CardsetViewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
-          Navigator.pushNamed(context, CardViewMain.id, arguments: cardsetID);
+          Navigator.pushReplacementNamed(context, CardViewMain.id,
+              arguments: cardsetID);
           print('Nav Send $cardsetID');
 
           //callUsers();

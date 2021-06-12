@@ -13,6 +13,7 @@ import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
+import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class CardViewMain extends StatefulWidget {
   static String id = 'cardview_screen';
@@ -55,10 +56,7 @@ class _CardViewMainState extends State<CardViewMain> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MyLearningCards', style: kCardsetCards),
-        backgroundColor: kSecondCardText,
-      ),
+      appBar: new MainAppBar(),
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Column(
@@ -91,7 +89,7 @@ class _CardViewMainState extends State<CardViewMain> {
           ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, EditCardsetOptions.id,
+          Navigator.pushReplacementNamed(context, EditCardsetOptions.id,
               arguments: cardsetID);
         },
         label: const Text('Edit Set'),

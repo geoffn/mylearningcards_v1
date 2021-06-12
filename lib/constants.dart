@@ -24,6 +24,12 @@ const kCardsetDataSmall = TextStyle(
   color: Colors.white,
 );
 
+const kAppBar = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
 const kCardsetBackCards = TextStyle(
   fontSize: 30.0,
   color: Color(0xFFFFEE93),
