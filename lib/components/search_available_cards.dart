@@ -38,7 +38,7 @@ class _SearchAvailableCardsState extends State<SearchAvailableCards> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Text('Card Set Name', style: kCardsetCards),
+                    Text('Card Search', style: kCardsetCards),
                   ],
                 ),
                 Column(
@@ -57,12 +57,12 @@ class _SearchAvailableCardsState extends State<SearchAvailableCards> {
                             searchTerm = value;
                           });
                         },
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter a search';
-                          }
-                          return null;
-                        },
+                        // validator: (value) {
+                        //   if (value == null || value.isEmpty) {
+                        //     return 'Please enter a search';
+                        //   }
+                        //   return null;
+                        // },
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           helperText: 'Search',

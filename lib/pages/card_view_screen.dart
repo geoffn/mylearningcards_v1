@@ -12,8 +12,8 @@ import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
-import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
+import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
 
 class CardViewMain extends StatefulWidget {
   static String id = 'cardview_screen';
@@ -63,6 +63,7 @@ class _CardViewMainState extends State<CardViewMain> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            CardSetBanner(),
             Expanded(
               child: FutureBuilder(
                 future: cFunctions.generateCardView(cardsetID),

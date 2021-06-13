@@ -11,6 +11,7 @@ import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
+import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
 
 class WelcomeMain extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -26,6 +27,7 @@ class _WelcomeMainState extends State<WelcomeMain> {
   String userName = "";
   String userEmail = "";
   String userPicture = "";
+  final spFunctions = SharedPreferencesFunction();
 
   @override
   void initState() {
@@ -83,6 +85,7 @@ class _WelcomeMainState extends State<WelcomeMain> {
           cardsetCardCount: card["cards"].length);
       //print("In For Loop");
       cardsets.add(cardset);
+      spFunctions.setCardName(card["_id"], card["set_name"]);
       //print(card["set_name"]);
     }
 

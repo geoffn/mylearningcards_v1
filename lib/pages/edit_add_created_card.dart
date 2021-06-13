@@ -1,5 +1,6 @@
 //TODO: search and then list of cards to add to this cardset.dynamic
 import 'package:flutter/material.dart';
+import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
 import 'package:mylearningcards_v1/components/remove_card_from_set.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
@@ -70,29 +71,7 @@ class _AddCreatedCardState extends State<AddCreatedCard> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.only(
-                left: 10.0,
-                right: 10.0,
-                top: 5,
-                bottom: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: kSecondCardText,
-              ),
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(
-                      "Edit Card set Name",
-                      style: kCardsetData,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            CardSetBanner(),
             SearchAvailableCards(cardsetID: cardsetID),
             AddCardToSet(cardsetID: cardsetID, searchTerm: searchTerm),
           ],

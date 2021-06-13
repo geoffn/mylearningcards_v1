@@ -113,6 +113,38 @@ class CardsetFunctions {
     return cardsets;
   }
 
+  Future<String> generateCardsetDetails(String cardsetID) async {
+    final uFunctions = UserFunctions();
+    final loggedInUser = uFunctions.getCurrentUser();
+
+    String? newID = "";
+    //print('LoggedIn: $loggedInUser');
+    if (loggedInUser != null) {
+      if (loggedInUser.providerData[0].uid != null) {
+        newID = loggedInUser.providerData[0].uid != null
+            ? loggedInUser.providerData[0].uid
+            : '0';
+      }
+    }
+    var token = JWTGenerator.createJWT(newID);
+
+    http.Response response = await http.get(
+      Uri.parse('$cardsAPI/cardset/$cardsetID'),
+      // Send authorization headers to the backend.
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    print(response.statusCode);
+    //print(response.body);
+
+    var cardDataResults = json.decode(response.body);
+    print('CVS- $cardDataResults');
+    var cardData = cardDataResults["results"][0];
+    return cardData["set_name"];
+  }
+
   void removeCardFromCardsetFunction(String cardsetID, String cardID) async {
     final uFunctions = UserFunctions();
     final loggedInUser = uFunctions.getCurrentUser();

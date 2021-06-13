@@ -7,6 +7,7 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
 
 class RemoveAssignedCard extends StatefulWidget {
   static String id = 'edit_remove_assigned_card';
@@ -59,29 +60,7 @@ class _RemoveAssignedCardState extends State<RemoveAssignedCard> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.only(
-                left: 10.0,
-                right: 10.0,
-                top: 5,
-                bottom: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: kSecondCardText,
-              ),
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(
-                      "Edit Card set Name",
-                      style: kCardsetData,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            CardSetBanner(),
             RemoveCardFromSet(cardsetID: cardsetID),
           ],
         ),

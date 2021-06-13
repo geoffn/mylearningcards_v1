@@ -6,7 +6,7 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/pages/edit_add_created_card.dart';
 import 'package:mylearningcards_v1/pages/edit_add_new_card.dart';
 import 'package:mylearningcards_v1/pages/edit_remove_assigned_card.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class EditCardsetOptions extends StatefulWidget {
@@ -57,28 +57,7 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.only(
-                left: 10.0,
-                right: 10.0,
-                top: 5,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: kSecondCardText,
-              ),
-              child: Center(
-                child: Column(
-                  children: [
-                    Text(
-                      "Edit Card set Name",
-                      style: kCardsetData,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            CardSetBanner(),
             Container(
               padding: EdgeInsets.all(10.0),
               margin: EdgeInsets.all(10.0),

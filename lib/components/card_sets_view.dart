@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
+import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
 import 'package:mylearningcards_v1/pages/card_view_screen.dart';
 
 class CardsetViewCard extends StatelessWidget {
@@ -19,10 +20,14 @@ class CardsetViewCard extends StatelessWidget {
   final int cardsetAccessedCount;
   final int cardsetCardCount;
 
+  final SharedPreferencesFunction spFunctions = SharedPreferencesFunction();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () async {
+          //Set preferences CurrentCardSetID and CurrentCardSetName
+          spFunctions.setCurrentCardset(cardsetID, cardsetName);
           Navigator.pushReplacementNamed(context, CardViewMain.id,
               arguments: cardsetID);
           print('Nav Send $cardsetID');
