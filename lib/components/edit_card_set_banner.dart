@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
+import 'package:mylearningcards_v1/pages/card_view_main_screen.dart';
 
 class CardSetBanner extends StatefulWidget {
   String cardsetID = "";
@@ -30,7 +31,7 @@ class _CardSetBannerState extends State<CardSetBanner> {
         left: 10.0,
         right: 10.0,
         top: 5,
-        bottom: 10,
+        bottom: 5,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
@@ -46,7 +47,7 @@ class _CardSetBannerState extends State<CardSetBanner> {
                 print('HasData ${snapshot.data}');
                 children = <Widget>[
                   Text(
-                    'Cardset: ${snapshot.data}',
+                    '${snapshot.data}',
                     style: kCardsetData,
                   )
                 ];
@@ -59,10 +60,16 @@ class _CardSetBannerState extends State<CardSetBanner> {
                 ];
               }
               return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: children,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, CardViewMain.id,
+                        arguments: widget.cardsetID);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: children,
+                  ),
                 ),
               );
             }),

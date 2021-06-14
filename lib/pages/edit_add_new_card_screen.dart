@@ -13,14 +13,14 @@ import 'package:mylearningcards_v1/components/search_available_cards.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 import 'package:mylearningcards_v1/components/remove_card_from_set.dart';
 
-class AddNewCard extends StatefulWidget {
+class EditAddNewCard extends StatefulWidget {
   static String id = 'edit_add_new_card';
 
   @override
-  _AddNewCardState createState() => _AddNewCardState();
+  _EditAddNewCardState createState() => _EditAddNewCardState();
 }
 
-class _AddNewCardState extends State<AddNewCard> {
+class _EditAddNewCardState extends State<EditAddNewCard> {
   final _auth = FirebaseAuth.instance;
   User? loggedInUser;
   final uFunctions = UserFunctions();
@@ -73,7 +73,7 @@ class _AddNewCardState extends State<AddNewCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CardSetBanner(),
-            NewCardset(cardsetID: cardsetID),
+            AddNewCard(cardsetID: cardsetID),
             RemoveCardFromSet(cardsetID: cardsetID),
           ],
         ),

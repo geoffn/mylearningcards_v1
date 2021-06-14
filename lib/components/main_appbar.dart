@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 
 class MainAppBar extends StatelessWidget with PreferredSizeWidget {
   @override

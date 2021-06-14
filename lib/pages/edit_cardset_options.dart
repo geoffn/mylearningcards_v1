@@ -3,9 +3,9 @@ import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
-import 'package:mylearningcards_v1/pages/edit_add_created_card.dart';
-import 'package:mylearningcards_v1/pages/edit_add_new_card.dart';
-import 'package:mylearningcards_v1/pages/edit_remove_assigned_card.dart';
+import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
+import 'package:mylearningcards_v1/pages/edit_add_new_card_screen.dart';
+import 'package:mylearningcards_v1/pages/remove_assigned_card_screen.dart';
 import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 
@@ -78,7 +78,7 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
                             MaterialStateProperty.all<Color>(kButtonColor),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, AddNewCard.id,
+                        Navigator.pushNamed(context, EditAddNewCard.id,
                             arguments: cardsetID);
                       },
                       child: const Text('Add New Card'),

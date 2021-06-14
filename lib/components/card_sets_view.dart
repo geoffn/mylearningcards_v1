@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
-import 'package:mylearningcards_v1/pages/card_view_screen.dart';
+import 'package:mylearningcards_v1/pages/card_view_main_screen.dart';
 
 class CardsetViewCard extends StatelessWidget {
   static String id = 'card_sets_view';

@@ -7,8 +7,8 @@ import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'package:mylearningcards_v1/pages/edit_add_created_card.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
+import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 
 class SearchAvailableCards extends StatefulWidget {
   SearchAvailableCards({required this.cardsetID});

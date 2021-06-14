@@ -7,20 +7,20 @@ import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 
-class NewCardset extends StatefulWidget {
+class AddNewCard extends StatefulWidget {
   static String id = 'AddNewCard';
 
-  NewCardset({required this.cardsetID});
+  AddNewCard({required this.cardsetID});
 
   String cardsetID;
 
   @override
-  _NewCardsetState createState() => _NewCardsetState();
+  _AddNewCardState createState() => _AddNewCardState();
 }
 
-class _NewCardsetState extends State<NewCardset> {
+class _AddNewCardState extends State<AddNewCard> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
   String userName = "";
@@ -113,7 +113,7 @@ class _NewCardsetState extends State<NewCardset> {
                 ),
                 Column(
                   children: <Widget>[
-                    Text('Front of Card', style: kCardsetCards),
+                    Text('Front of Card *', style: kCardsetDataSmall),
                   ],
                 ),
                 Column(
@@ -140,7 +140,6 @@ class _NewCardsetState extends State<NewCardset> {
                         },
                         decoration: InputDecoration(
                           fillColor: Colors.white,
-                          helperText: 'Front of Card *',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0)),
                         ),
@@ -150,7 +149,7 @@ class _NewCardsetState extends State<NewCardset> {
                 ),
                 Column(
                   children: <Widget>[
-                    Text('Back of Card', style: kCardsetCards),
+                    Text('Back of Card *', style: kCardsetDataSmall),
                   ],
                 ),
                 Column(
@@ -172,7 +171,6 @@ class _NewCardsetState extends State<NewCardset> {
                         },
                         decoration: InputDecoration(
                           fillColor: Colors.white,
-                          helperText: 'Back of Card *',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0)),
                         ),
@@ -182,7 +180,7 @@ class _NewCardsetState extends State<NewCardset> {
                 ),
                 Column(
                   children: <Widget>[
-                    Text('Category', style: kCardsetCards),
+                    Text('Category', style: kCardsetDataSmall),
                   ],
                 ),
                 Column(
@@ -204,7 +202,6 @@ class _NewCardsetState extends State<NewCardset> {
                         },
                         decoration: InputDecoration(
                           fillColor: Colors.white,
-                          helperText: 'Category',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0)),
                         ),

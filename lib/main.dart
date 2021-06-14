@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/components/scratchpad/editcardset_scratch.dart';
-import 'package:mylearningcards_v1/pages/card_view_screen.dart';
-import 'package:mylearningcards_v1/pages/edit_add_created_card.dart';
-import 'package:mylearningcards_v1/pages/edit_add_new_card.dart';
-import 'package:mylearningcards_v1/pages/edit_cardset.dart';
+import 'package:mylearningcards_v1/pages/card_view_main_screen.dart';
+import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
+import 'package:mylearningcards_v1/pages/edit_add_new_card_screen.dart';
+import 'package:mylearningcards_v1/pages/edit_cardset_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
-import 'package:mylearningcards_v1/pages/edit_remove_assigned_card.dart';
+import 'package:mylearningcards_v1/pages/remove_assigned_card_screen.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 import 'pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mylearningcards_v1/pages/auth_check_redirect.dart';
@@ -41,7 +41,7 @@ class MyLearningCards extends StatelessWidget {
         EditCardset.id: (context) => EditCardset(),
         EditCardsetScratch.id: (context) => EditCardsetScratch(),
         EditCardsetOptions.id: (context) => EditCardsetOptions(),
-        AddNewCard.id: (context) => AddNewCard(),
+        EditAddNewCard.id: (context) => EditAddNewCard(),
         AddCreatedCard.id: (context) => AddCreatedCard(),
         RemoveAssignedCard.id: (context) => RemoveAssignedCard(),
       },

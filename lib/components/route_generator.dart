@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mylearningcards_v1/pages/card_view_screen.dart';
+import 'package:mylearningcards_v1/pages/card_view_main_screen.dart';
 import 'package:mylearningcards_v1/pages/login_page.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

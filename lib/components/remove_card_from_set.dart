@@ -47,7 +47,6 @@ class _RemoveCardFromSetState extends State<RemoveCardFromSet> {
                 FutureBuilder(
                   future: cFunctions.generateCardView(widget.cardsetID),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    //                Whether project = projectSnap.data[index]; //todo check your model
                     var childCount = 0;
                     if (snapshot.connectionState != ConnectionState.done ||
                         snapshot.data == null)

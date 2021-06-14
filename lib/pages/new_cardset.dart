@@ -7,7 +7,7 @@ import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'package:mylearningcards_v1/pages/welcome_cards.dart';
+import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class NewCardset extends StatefulWidget {

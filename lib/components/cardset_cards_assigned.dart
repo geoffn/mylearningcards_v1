@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/components/jwt.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
-import 'package:mylearningcards_v1/pages/edit_cardset.dart';
+import 'package:mylearningcards_v1/pages/edit_cardset_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
