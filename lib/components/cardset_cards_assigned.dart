@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/components/card_view.dart';
+import 'package:mylearningcards_v1/components/card_view_card.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
@@ -39,29 +39,7 @@ class _CardViewMainState extends State<CardViewMain> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             CardSetBanner(),
-            Expanded(
-              child: FutureBuilder(
-                future: cFunctions.generateCardView(cardsetID),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  print(snapshot.data);
-                  if (snapshot.data == null) {
-                    return Container(child: Center(child: Text("Loading...")));
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CardViewCard(
-                          cardID: snapshot.data[index].cardID,
-                          cardPrimary: snapshot.data[index].cardPrimary,
-                          cardSecondary: snapshot.data[index].cardSecondary,
-                          cardCategory: snapshot.data[index].cardCategory,
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
+            CardViewCard(cardsetID: cardsetID),
           ]),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

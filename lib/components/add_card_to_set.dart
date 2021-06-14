@@ -47,13 +47,14 @@ class _AddCardToSetState extends State<AddCardToSet> {
                 FutureBuilder(
                   future: cFunctions.generateAvailalbeCards(widget.searchTerm),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    //                Whether project = projectSnap.data[index]; //todo check your model
                     var childCount = 0;
                     if (snapshot.connectionState != ConnectionState.done ||
                         snapshot.data == null)
                       childCount = 1;
-                    else
+                    else {
                       childCount = snapshot.data.length;
+                      print('avail: ${snapshot.data[0]}');
+                    }
                     return SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
                         if (snapshot.connectionState != ConnectionState.done) {
@@ -63,6 +64,7 @@ class _AddCardToSetState extends State<AddCardToSet> {
                         if (snapshot.hasData == false) {
                           return Container();
                         }
+
                         return Card(
                           margin: EdgeInsets.fromLTRB(30, 3, 30, 3),
                           color: cardColor,
@@ -71,16 +73,17 @@ class _AddCardToSetState extends State<AddCardToSet> {
                                 onTap: () async {
                                   print("icon tapped");
                                   print(
-                                      "id of card: ${snapshot.data[index].cardID} for cardset ${widget.cardsetID}");
+                                      "id of card: ${snapshot.data[index]['_id']} for cardset ${widget.cardsetID}");
                                   cFunctions.addCardToCardsetFunction(
                                       widget.cardsetID,
-                                      snapshot.data[index].cardID);
+                                      snapshot.data[index]['_id']);
                                   setState(() {
                                     cardColor = kSecondCardText;
                                   });
                                 },
                                 child: Icon(Icons.add)),
-                            title: new Text(snapshot.data[index].cardPrimary,
+                            title: new Text(
+                                snapshot.data[index]['primary_word'],
                                 style: new TextStyle(color: Colors.white)),
                           ),
                         );

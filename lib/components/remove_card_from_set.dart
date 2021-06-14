@@ -71,13 +71,14 @@ class _RemoveCardFromSetState extends State<RemoveCardFromSet> {
                                       "id of card: ${snapshot.data[index].cardID} for cardset ${widget.cardsetID}");
                                   cFunctions.removeCardFromCardsetFunction(
                                       widget.cardsetID,
-                                      snapshot.data[index].cardID);
+                                      snapshot.data[index]['_id']);
                                   setState(() {
                                     cardColor = kSecondCardText;
                                   });
                                 },
                                 child: Icon(Icons.delete)),
-                            title: new Text(snapshot.data[index].cardPrimary,
+                            title: new Text(
+                                snapshot.data[index]['primary_word'],
                                 style: new TextStyle(color: Colors.white)),
                           ),
                         );

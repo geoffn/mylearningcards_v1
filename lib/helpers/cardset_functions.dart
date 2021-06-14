@@ -1,4 +1,4 @@
-import 'package:mylearningcards_v1/components/card_view.dart';
+import 'package:mylearningcards_v1/components/card_view_card.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
 import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
@@ -6,10 +6,10 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'dart:convert';
 
 class CardsetFunctions {
-  Future<List<CardViewCard>> generateCardView(String cardsetID) async {
+  Future<List<dynamic>> generateCardView(String cardsetID) async {
     final uFunctions = UserFunctions();
     final loggedInUser = uFunctions.getCurrentUser();
-    List<CardViewCard> cardsets = [];
+    List allCards;
 
     String? newID = "";
     //print('LoggedIn: $loggedInUser');
@@ -50,30 +50,17 @@ class CardsetFunctions {
       var cardDataResults = json.decode(response.body);
       print('CVS- $cardDataResults');
       var cardData = cardDataResults["results"][0];
-      var allCards = cardData["cards"];
+      allCards = cardData["cards"];
 
-      List<CardViewCard> cardsets = [];
-
-      for (var card in allCards) {
-        CardViewCard cardset = CardViewCard(
-          cardID: card["_id"],
-          cardPrimary: card["primary_word"],
-          cardSecondary: card["secondary_word"],
-          cardCategory: card["category"],
-        );
-        print("In For Loop");
-        cardsets.add(cardset);
-        print(card["_id"]);
-      }
-
-      return cardsets;
+      return allCards;
     } catch (e) {
       print(e);
     }
-    return cardsets;
+    allCards = [];
+    return allCards;
   }
 
-  Future<List<CardViewCard>> generateAvailalbeCards(String? searchTerm) async {
+  Future<List<dynamic>> generateAvailalbeCards(String? searchTerm) async {
     final uFunctions = UserFunctions();
     final loggedInUser = uFunctions.getCurrentUser();
     String searchParam = "/*";
@@ -115,21 +102,7 @@ class CardsetFunctions {
     var cardData = cardDataResults["results"];
     print(cardData);
 
-    List<CardViewCard> cardsets = [];
-
-    for (var card in cardData) {
-      CardViewCard cardset = CardViewCard(
-        cardID: card["_id"],
-        cardPrimary: card["primary_word"],
-        cardSecondary: card["secondary_word"],
-        cardCategory: card["category"],
-      );
-      print("In For Loop");
-      cardsets.add(cardset);
-      print(card["_id"]);
-    }
-
-    return cardsets;
+    return cardData;
   }
 
   Future<String> generateCardsetDetails(String cardsetID) async {
