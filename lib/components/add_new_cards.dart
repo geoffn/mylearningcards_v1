@@ -12,7 +12,9 @@ import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 class NewCardset extends StatefulWidget {
   static String id = 'AddNewCard';
 
-  NewCardset();
+  NewCardset({required this.cardsetID});
+
+  String cardsetID;
 
   @override
   _NewCardsetState createState() => _NewCardsetState();
@@ -29,22 +31,9 @@ class _NewCardsetState extends State<NewCardset> {
   String category = "NA";
   final uFunctions = UserFunctions();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        userName = user.providerData[0].displayName ?? "Missing";
-        userEmail = user.providerData[0].email ?? "Missing";
-        userPicture = user.providerData[0].photoURL ?? "Missing";
-      }
-    } catch (e) {}
-  }
-
   void _addCardSet() async {
     final loggedInUser = uFunctions.getCurrentUser();
+    String newCardID = "";
     String? newID = "";
     print('LoggedIn: $loggedInUser');
     if (loggedInUser != null) {
@@ -76,7 +65,30 @@ class _NewCardsetState extends State<NewCardset> {
         body: body,
       );
       print(response.statusCode);
-      Navigator.pushNamed(context, WelcomeMain.id);
+      print(response.body);
+      final Map newCardIDMap = json.decode(response.body);
+      newCardID = newCardIDMap["_id"];
+      print('newcardid: $newCardID');
+    } catch (e) {}
+
+    try {
+      var addCardBody = jsonEncode(<String, String>{
+        'cardId': newCardID,
+        'cardSetId': widget.cardsetID,
+        'category': category,
+        'uid': newID != null ? newID : '0',
+      });
+      http.Response response = await http.post(
+        Uri.parse('$cardsAPI/cardsetaddcard'),
+        // Send authorization headers to the backend.
+        headers: {
+          'Authorization': 'Bearer $token',
+          "Content-Type": "application/json"
+        },
+        body: addCardBody,
+      );
+      print(response.statusCode);
+      print(response.body);
     } catch (e) {}
   }
 

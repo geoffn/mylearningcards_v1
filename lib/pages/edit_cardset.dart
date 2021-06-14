@@ -54,7 +54,7 @@ class _EditCardsetState extends State<EditCardset> {
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Column(children: <Widget>[
-        NewCardset(),
+        //NewCardset(),
         Expanded(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

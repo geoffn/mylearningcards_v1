@@ -8,6 +8,7 @@ import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
+import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class RemoveAssignedCard extends StatefulWidget {
   static String id = 'edit_remove_assigned_card';
@@ -48,10 +49,7 @@ class _RemoveAssignedCardState extends State<RemoveAssignedCard> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MyLearningCards S', style: kCardsetCards),
-        backgroundColor: kSecondCardText,
-      ),
+      appBar: new MainAppBar(),
       drawer: new MainDrawer(
           userName: userName, userEmail: userEmail, userPicture: userPicture),
       body: Container(
