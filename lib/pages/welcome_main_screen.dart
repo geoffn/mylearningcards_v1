@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/cardset_view_card.dart';
@@ -21,27 +20,9 @@ class WelcomeMain extends StatefulWidget {
 }
 
 class _WelcomeMainState extends State<WelcomeMain> {
-  final _auth = FirebaseAuth.instance;
   User? loggedInUser;
   final uFunctions = UserFunctions();
-  String userName = "";
-  String userEmail = "";
-  String userPicture = "";
   final spFunctions = SharedPreferencesFunction();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        userName = user.providerData[0].displayName ?? "Missing";
-        userEmail = user.providerData[0].email ?? "Missing";
-        userPicture = user.providerData[0].photoURL ?? "Missing";
-      }
-    } catch (e) {}
-  }
 
   Future<List<CardsetViewCard>> _generateCardsetView() async {
     final loggedInUser = uFunctions.getCurrentUser();
@@ -96,8 +77,7 @@ class _WelcomeMainState extends State<WelcomeMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new MainAppBar(),
-      drawer: new MainDrawer(
-          userName: userName, userEmail: userEmail, userPicture: userPicture),
+      drawer: new MainDrawer(),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,

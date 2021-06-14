@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/pages/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MainDrawer extends StatelessWidget {
-  MainDrawer(
-      {required this.userName,
-      required this.userEmail,
-      required this.userPicture});
-
-  final String userName;
-  final String userEmail;
-  final String userPicture;
+  MainDrawer();
 
   @override
   Widget build(BuildContext context) {
+    final _auth = FirebaseAuth.instance;
+    final user = _auth.currentUser;
+    String userName;
+    String userEmail;
+    String userPicture;
+    if (user != null) {
+      userName = user.providerData[0].displayName ?? "Missing";
+      userEmail = user.providerData[0].email ?? "Missing";
+      userPicture = user.providerData[0].photoURL ?? "Missing";
+    } else {
+      userName = "Missing";
+      userEmail = "Missing";
+      userPicture = "Missing";
+    }
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,

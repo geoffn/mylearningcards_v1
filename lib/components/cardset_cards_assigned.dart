@@ -17,28 +17,10 @@ class CardViewMain extends StatefulWidget {
 }
 
 class _CardViewMainState extends State<CardViewMain> {
-  final _auth = FirebaseAuth.instance;
   User? loggedInUser;
   final uFunctions = UserFunctions();
-  String userName = "";
-  String userEmail = "";
-  String userPicture = "";
   String cardsetID = "";
   CardsetFunctions cFunctions = CardsetFunctions();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        userName = user.providerData[0].displayName ?? "Missing";
-        userEmail = user.providerData[0].email ?? "Missing";
-        userPicture = user.providerData[0].photoURL ?? "Missing";
-      }
-    } catch (e) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +33,7 @@ class _CardViewMainState extends State<CardViewMain> {
 
     return Scaffold(
       appBar: new MainAppBar(),
-      drawer: new MainDrawer(
-          userName: userName, userEmail: userEmail, userPicture: userPicture),
+      drawer: new MainDrawer(),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,

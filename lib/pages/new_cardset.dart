@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
 import 'dart:convert';
@@ -18,27 +17,9 @@ class NewCardset extends StatefulWidget {
 
 class _NewCardsetState extends State<NewCardset> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _auth = FirebaseAuth.instance;
-  String userName = "";
-  String userEmail = "";
-  String userPicture = "";
   String cardsetName = "";
   String cardsetDescription = "";
   final uFunctions = UserFunctions();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        userName = user.providerData[0].displayName ?? "Missing";
-        userEmail = user.providerData[0].email ?? "Missing";
-        userPicture = user.providerData[0].photoURL ?? "Missing";
-      }
-    } catch (e) {}
-  }
 
   void _addCardSet() async {
     final loggedInUser = uFunctions.getCurrentUser();
@@ -80,8 +61,7 @@ class _NewCardsetState extends State<NewCardset> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new MainAppBar(),
-      drawer: new MainDrawer(
-          userName: userName, userEmail: userEmail, userPicture: userPicture),
+      drawer: new MainDrawer(),
       body: Container(
         decoration: BoxDecoration(
             color: kSecondCardText, borderRadius: BorderRadius.circular(10.0)),

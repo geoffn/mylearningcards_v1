@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mylearningcards_v1/components/scratchpad/editcardset_scratch.dart';
 import 'package:mylearningcards_v1/pages/card_view_main_screen.dart';
 import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_add_new_card_screen.dart';
@@ -39,7 +38,6 @@ class MyLearningCards extends StatelessWidget {
         NewCardset.id: (context) => NewCardset(),
         CardViewMain.id: (context) => CardViewMain(),
         EditCardset.id: (context) => EditCardset(),
-        EditCardsetScratch.id: (context) => EditCardsetScratch(),
         EditCardsetOptions.id: (context) => EditCardsetOptions(),
         EditAddNewCard.id: (context) => EditAddNewCard(),
         AddCreatedCard.id: (context) => AddCreatedCard(),

@@ -13,27 +13,10 @@ class EditCardset extends StatefulWidget {
 }
 
 class _EditCardsetState extends State<EditCardset> {
-  final _auth = FirebaseAuth.instance;
   User? loggedInUser;
   final uFunctions = UserFunctions();
-  String userName = "";
-  String userEmail = "";
-  String userPicture = "";
   String cardsetID = "";
   CardsetFunctions cFunctions = CardsetFunctions();
-
-  @override
-  void initState() {
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        userName = user.providerData[0].displayName ?? "Missing";
-        userEmail = user.providerData[0].email ?? "Missing";
-        userPicture = user.providerData[0].photoURL ?? "Missing";
-      }
-    } catch (e) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +32,7 @@ class _EditCardsetState extends State<EditCardset> {
         title: Text('MyLearningCards S', style: kCardsetCards),
         backgroundColor: kSecondCardText,
       ),
-      drawer: new MainDrawer(
-          userName: userName, userEmail: userEmail, userPicture: userPicture),
+      drawer: new MainDrawer(),
       body: Column(children: <Widget>[
         //NewCardset(),
         Expanded(

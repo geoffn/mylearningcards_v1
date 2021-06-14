@@ -17,27 +17,11 @@ class AddCreatedCard extends StatefulWidget {
 }
 
 class _AddCreatedCardState extends State<AddCreatedCard> {
-  final _auth = FirebaseAuth.instance;
   User? loggedInUser;
   final uFunctions = UserFunctions();
-  String userName = "";
-  String userEmail = "";
-  String userPicture = "";
   String cardsetID = "";
   String searchTerm = "";
   CardsetFunctions cFunctions = CardsetFunctions();
-
-  void initState() {
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        userName = user.providerData[0].displayName ?? "Missing";
-        userEmail = user.providerData[0].email ?? "Missing";
-        userPicture = user.providerData[0].photoURL ?? "Missing";
-      }
-    } catch (e) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +44,7 @@ class _AddCreatedCardState extends State<AddCreatedCard> {
 
     return Scaffold(
       appBar: new MainAppBar(),
-      drawer: new MainDrawer(
-          userName: userName, userEmail: userEmail, userPicture: userPicture),
+      drawer: new MainDrawer(),
       body: Container(
         child: Column(
           mainAxisSize: MainAxisSize.min,
