@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:mylearningcards_v1/pages/login_page.dart';
 import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
@@ -8,7 +6,7 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 class AuthCheckRedirect extends StatelessWidget {
   static String id = 'AuthCheckRedirect';
 
-  UserFunctions uFunctions = UserFunctions();
+  final UserFunctions uFunctions = UserFunctions();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

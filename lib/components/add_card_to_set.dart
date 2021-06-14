@@ -7,8 +7,8 @@ import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 
 class AddCardToSet extends StatefulWidget {
   AddCardToSet({required this.cardsetID, required this.searchTerm});
-  String cardsetID;
-  String searchTerm;
+  final String cardsetID;
+  final String searchTerm;
 
   @override
   _AddCardToSetState createState() => _AddCardToSetState();

@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/components/add_card_to_set.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart' as http;
-import 'package:mylearningcards_v1/components/jwt.dart';
-import 'dart:convert';
-import 'package:mylearningcards_v1/helpers/user_functions.dart';
-import 'package:mylearningcards_v1/conf/conf_dev.dart';
 import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
-import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 
 class SearchAvailableCards extends StatefulWidget {
   SearchAvailableCards({required this.cardsetID});
 
-  String cardsetID;
+  final String cardsetID;
   @override
   _SearchAvailableCardsState createState() => _SearchAvailableCardsState();
 }

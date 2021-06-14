@@ -1,19 +1,16 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
 import 'package:mylearningcards_v1/pages/card_view_main_screen.dart';
 
 class CardSetBanner extends StatefulWidget {
-  String cardsetID = "";
-  String cardsetName = "";
   @override
   _CardSetBannerState createState() => _CardSetBannerState();
 }
 
 class _CardSetBannerState extends State<CardSetBanner> {
+  String cardsetID = "";
+  String cardsetName = "";
   Future<String> _getCurrentName() async {
     final SharedPreferencesFunction spFunctions = SharedPreferencesFunction();
 
@@ -63,7 +60,7 @@ class _CardSetBannerState extends State<CardSetBanner> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.pushReplacementNamed(context, CardViewMain.id,
-                        arguments: widget.cardsetID);
+                        arguments: cardsetID);
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

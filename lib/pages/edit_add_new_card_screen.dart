@@ -1,17 +1,13 @@
 //TODO: search and then list of cards to add to this cardset.dynamic
 import 'package:flutter/material.dart';
-import 'package:mylearningcards_v1/components/add_new_cards.dart';
-import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
+import 'package:mylearningcards_v1/components/add_new_card.dart';
+import 'package:mylearningcards_v1/components/cardset_banner.dart';
 import 'package:mylearningcards_v1/components/remove_card_from_set.dart';
-import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mylearningcards_v1/components/add_card_to_set.dart';
-import 'package:mylearningcards_v1/components/search_available_cards.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
-import 'package:mylearningcards_v1/components/remove_card_from_set.dart';
 
 class EditAddNewCard extends StatefulWidget {
   static String id = 'edit_add_new_card';

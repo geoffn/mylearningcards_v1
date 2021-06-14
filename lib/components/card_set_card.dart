@@ -10,7 +10,7 @@ class CardSetCard extends StatelessWidget {
       required this.cardsetCardCount});
 
   final cardsetName;
-  String? cardsetDescription;
+  final String? cardsetDescription;
   final String cardsetCreateDate;
   final int cardsetAccessedCount;
   final int cardsetCardCount;

@@ -1,20 +1,18 @@
 //TODO: add form and add cards to owners cards and add to current card list.dynamic
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
-import 'package:mylearningcards_v1/components/jwt.dart';
+import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
 
 class AddNewCard extends StatefulWidget {
   static String id = 'AddNewCard';
 
   AddNewCard({required this.cardsetID});
 
-  String cardsetID;
+  final String cardsetID;
 
   @override
   _AddNewCardState createState() => _AddNewCardState();
@@ -22,7 +20,6 @@ class AddNewCard extends StatefulWidget {
 
 class _AddNewCardState extends State<AddNewCard> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _auth = FirebaseAuth.instance;
   String userName = "";
   String userEmail = "";
   String userPicture = "";

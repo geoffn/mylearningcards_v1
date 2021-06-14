@@ -1,7 +1,7 @@
 import 'package:mylearningcards_v1/components/card_view.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
 import 'package:http/http.dart' as http;
-import 'package:mylearningcards_v1/components/jwt.dart';
+import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'dart:convert';
 
@@ -92,7 +92,7 @@ class CardsetFunctions {
     var token = JWTGenerator.createJWT(newID);
 
     if (searchTerm != null && searchTerm != '') {
-      searchParam = '/${searchTerm}';
+      searchParam = '/$searchTerm';
       searchURL = '$cardsAPI/cardsearch/$newID$searchParam';
     } else {
       searchURL = '$cardsAPI/card/$newID';

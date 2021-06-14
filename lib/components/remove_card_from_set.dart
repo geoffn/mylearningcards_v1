@@ -1,13 +1,11 @@
 //TODO:  Remove a card from the current set
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/helpers/user_functions.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 
 class RemoveCardFromSet extends StatefulWidget {
   RemoveCardFromSet({required this.cardsetID});
-  String cardsetID;
+  final String cardsetID;
 
   @override
   _RemoveCardFromSetState createState() => _RemoveCardFromSetState();

@@ -1,13 +1,11 @@
 //TODO: Called from edit_cardset_ooptions.  List of cards with a delete icon.  Removes card from cardset
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/components/remove_card_from_set.dart';
-import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
-import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
+import 'package:mylearningcards_v1/components/cardset_banner.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 
 class RemoveAssignedCard extends StatefulWidget {

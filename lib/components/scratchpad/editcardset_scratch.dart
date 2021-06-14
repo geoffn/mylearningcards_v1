@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mylearningcards_v1/components/add_new_cards.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
-import 'package:mylearningcards_v1/components/card_view.dart';
 
 class EditCardsetScratch extends StatefulWidget {
   static String id = 'editcardset_scratch';

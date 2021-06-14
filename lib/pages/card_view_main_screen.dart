@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mylearningcards_v1/components/scratchpad/editcardset_scratch.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/card_view.dart';
-import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'package:http/http.dart' as http;
-import 'package:mylearningcards_v1/components/jwt.dart';
-import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
-import 'package:mylearningcards_v1/pages/edit_cardset_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
-import 'package:mylearningcards_v1/components/edit_card_set_banner.dart';
+import 'package:mylearningcards_v1/components/cardset_banner.dart';
 
 class CardViewMain extends StatefulWidget {
   static String id = 'cardview_screen';
