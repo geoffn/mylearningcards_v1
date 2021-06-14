@@ -17,4 +17,22 @@ class UserFunctions {
       print(e);
     }
   }
+
+  Future<bool> getLoggedIn() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        final User loggedInUser = user;
+        print(loggedInUser.displayName);
+        return true;
+      } else {
+        print('User is null');
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+
+    return false;
+  }
 }

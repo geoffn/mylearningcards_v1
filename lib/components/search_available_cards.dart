@@ -66,7 +66,6 @@ class _SearchAvailableCardsState extends State<SearchAvailableCards> {
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           helperText: 'Search',
-                          counterText: '0 characters',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0)),
                         ),
@@ -79,6 +78,10 @@ class _SearchAvailableCardsState extends State<SearchAvailableCards> {
                     Container(
                       width: 300,
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(kButtonColor),
+                        ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             String args = '${widget.cardsetID}/$searchTerm';

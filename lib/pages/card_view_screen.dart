@@ -95,7 +95,7 @@ class _CardViewMainState extends State<CardViewMain> {
         },
         label: const Text('Edit Set'),
         icon: const Icon(Icons.edit),
-        backgroundColor: kSecondCardText,
+        backgroundColor: kButtonColor,
       ),
     );
   }

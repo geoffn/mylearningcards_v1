@@ -73,6 +73,10 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
                       style: kCardsetDataSmall,
                     ),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(kButtonColor),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, AddNewCard.id,
                             arguments: cardsetID);
@@ -98,6 +102,10 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
                       style: kCardsetDataSmall,
                     ),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(kButtonColor),
+                      ),
                       onPressed: () {
                         Navigator.pushReplacementNamed(
                             context, AddCreatedCard.id,
@@ -124,6 +132,10 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
                       style: kCardsetDataSmall,
                     ),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(kButtonColor),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, RemoveAssignedCard.id,
                             arguments: cardsetID);

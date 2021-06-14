@@ -10,6 +10,7 @@ import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/pages/welcome_cards.dart';
 import 'pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mylearningcards_v1/pages/auth_check_redirect.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +31,9 @@ class MyLearningCards extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.white),
         ),
       ),
-      initialRoute: LoginPage.id,
+      home: AuthCheckRedirect(),
       routes: {
+        AuthCheckRedirect.id: (context) => AuthCheckRedirect(),
         LoginPage.id: (context) => LoginPage(),
         WelcomeMain.id: (context) => WelcomeMain(),
         NewCardset.id: (context) => NewCardset(),

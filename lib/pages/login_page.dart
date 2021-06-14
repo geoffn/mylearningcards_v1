@@ -11,22 +11,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _auth = FirebaseAuth.instance;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        //Navigator.pushNamed(context, CardsetViewCard.id);
-      }
-    } catch (e) {}
-  }
-
   @override
   Widget build(BuildContext context) {
+    final _auth = FirebaseAuth.instance;
+    final user = _auth.currentUser;
+    if (user != null) {
+      print('LOGIN: $user');
+      //Navigator.pushReplacementNamed(context, WelcomeMain.id);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('MyLearningCards', style: kCardsetCards),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mylearningcards_v1/pages/login_page.dart';
 
 class MainDrawer extends StatelessWidget {
   MainDrawer(
@@ -31,7 +32,11 @@ class MainDrawer extends StatelessWidget {
             title: Text('Messages'),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, LoginPage.id);
+                },
+                child: Icon(Icons.account_circle)),
             title: Text(userName),
           ),
           ListTile(

@@ -217,6 +217,10 @@ class _NewCardsetState extends State<NewCardset> {
                     Container(
                       width: 300,
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(kButtonColor),
+                        ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _addCardSet();

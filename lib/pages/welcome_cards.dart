@@ -137,7 +137,7 @@ class _WelcomeMainState extends State<WelcomeMain> {
         },
         label: const Text('Add Card Set'),
         icon: const Icon(Icons.add),
-        backgroundColor: kSecondCardText,
+        backgroundColor: kButtonColor,
       ),
     );
   }
