@@ -24,86 +24,123 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('MyLearningCards', style: kCardsetCards),
         backgroundColor: kSecondCardText,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: Container(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
               padding: EdgeInsets.all(10.0),
               margin: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 color: kSecondCardText,
               ),
-              child: Image.asset('images/mylearningcards_logo.png'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'images/mylearningcards_logo.png',
+                    width: 200,
+                    height: 200,
+                  ),
+                  Text('Mylearningcards.com')
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Material(
-              elevation: 5.0,
-              color: Colors.lightBlueAccent,
-              borderRadius: BorderRadius.circular(30.0),
-              child: MaterialButton(
-                onPressed: () async {
-                  try {
-                    final user = await AuthWithGoogle.signInWithGoogle();
-                    if (user != null) {
-                      print(user.user);
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    try {
+                      final user = await AuthWithGoogle.signInWithGoogle();
+                      if (user != null) {
+                        print(user.user);
+                      }
+                      Navigator.pushNamed(context, WelcomeMain.id);
+                    } catch (e) {
+                      print(e);
                     }
-                    Navigator.pushNamed(context, WelcomeMain.id);
-                  } catch (e) {
-                    print(e);
-                  }
-                },
-                minWidth: 200.0,
-                height: 42.0,
-                child: Text(
-                  'Sign in With Google',
+                  },
+                  child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: kSecondCardText,
+                      ),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'images/google.png',
+                              width: 30,
+                              height: 30,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text('Sign in with Google')
+                          ])),
                 ),
-              ),
+              ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Material(
-              elevation: 5.0,
-              color: Colors.lightBlueAccent,
-              borderRadius: BorderRadius.circular(30.0),
-              child: MaterialButton(
-                onPressed: () {
-                  //Go to login screen.
-                  //Navigator.pushNamed(context, LoginScreen.id);
-                },
-                minWidth: 200.0,
-                height: 42.0,
-                child: Text(
-                  'Log In',
-                ),
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: kSecondCardText,
+                    ),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'images/facebook.png',
+                            width: 30,
+                            height: 30,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('Sign in with Facebook')
+                        ])),
+              ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Material(
-              color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(30.0),
-              elevation: 5.0,
-              child: MaterialButton(
-                onPressed: () {
-                  //Go to registration screen.
-                  //Navigator.pushNamed(context, RegistrationScreen.id);
-                },
-                minWidth: 200.0,
-                height: 42.0,
-                child: Text(
-                  'Register',
-                ),
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: kSecondCardText,
+                    ),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text('Sign and with Email Password')])),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
