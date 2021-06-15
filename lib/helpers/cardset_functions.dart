@@ -2,6 +2,7 @@ import 'package:mylearningcards_v1/components/card_view_card.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
 import 'package:http/http.dart' as http;
 import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
+import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'dart:convert';
 
@@ -58,6 +59,61 @@ class CardsetFunctions {
     }
     allCards = [];
     return allCards;
+  }
+
+  Future<List<dynamic>> generateCardsetView(String? searchTerm) async {
+    final UserFunctions uFunctions = UserFunctions();
+    final SharedPreferencesFunction spFunctions = SharedPreferencesFunction();
+    final loggedInUser = uFunctions.getCurrentUser();
+    String searchParam = "/*";
+    String searchURL = "";
+    String? newID = "";
+    //print('LoggedIn: $loggedInUser');
+    if (loggedInUser != null) {
+      if (loggedInUser.providerData[0].uid != null) {
+        newID = loggedInUser.providerData[0].uid != null
+            ? loggedInUser.providerData[0].uid
+            : '0';
+      }
+    }
+
+    var token = JWTGenerator.createJWT(newID);
+
+    print('genereate $searchTerm');
+
+    if (searchTerm != null && searchTerm != '') {
+      print('genereate2 $searchTerm');
+      searchParam = '/$searchTerm';
+      searchURL = '$cardsAPI/cardsetsearch/$newID$searchParam';
+    } else {
+      searchURL = '$cardsAPI/cardsetforowner';
+    }
+
+    print('Search Term : $searchTerm');
+    print('Search URL: $searchURL');
+    http.Response response = await http.get(
+      Uri.parse(searchURL),
+      // Send authorization headers to the backend.
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+    //print(response.statusCode);
+    //print(response.body);
+
+    var cardDataResults = json.decode(response.body);
+
+    var cardData = cardDataResults["results"];
+
+    //print('cardData: $cardData');
+
+    for (var card in cardData) {
+      spFunctions.setCardName(card["_id"], card["set_name"]);
+      //print(card["set_name"]);
+    }
+    print('cFunction: $cardData');
+
+    return cardData;
   }
 
   Future<List<dynamic>> generateAvailalbeCards(String? searchTerm) async {

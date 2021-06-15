@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
-import 'package:mylearningcards_v1/helpers/shared_preferences_functions.dart';
+import 'package:mylearningcards_v1/components/search_cardsets.dart';
 
 class WelcomeMain extends StatefulWidget {
   static String id = 'welcome_screen';
@@ -20,97 +20,19 @@ class WelcomeMain extends StatefulWidget {
 }
 
 class _WelcomeMainState extends State<WelcomeMain> {
-  User? loggedInUser;
-  final uFunctions = UserFunctions();
-  final spFunctions = SharedPreferencesFunction();
-
-  Future<List<CardsetViewCard>> _generateCardsetView() async {
-    final loggedInUser = uFunctions.getCurrentUser();
-    String? newID = "";
-    //print('LoggedIn: $loggedInUser');
-    if (loggedInUser != null) {
-      if (loggedInUser.providerData[0].uid != null) {
-        newID = loggedInUser.providerData[0].uid != null
-            ? loggedInUser.providerData[0].uid
-            : '0';
-      }
-    }
-
-    var token = JWTGenerator.createJWT(newID);
-
-    http.Response response = await http.get(
-      Uri.parse('$cardsAPI/cardsetforowner'),
-      // Send authorization headers to the backend.
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-    );
-    //print(response.statusCode);
-    //print(response.body);
-
-    var cardDataResults = json.decode(response.body);
-
-    var cardData = cardDataResults["results"];
-
-    //print('cardData: $cardData');
-
-    List<CardsetViewCard> cardsets = [];
-
-    for (var card in cardData) {
-      CardsetViewCard cardset = CardsetViewCard(
-          cardsetID: card["_id"],
-          cardsetName: card["set_name"],
-          cardsetDescription: card["set_description"],
-          cardsetCreateDate: card["createdAt"],
-          cardsetAccessedCount: card["access_count"],
-          cardsetCardCount: card["cards"].length);
-      //print("In For Loop");
-      cardsets.add(cardset);
-      spFunctions.setCardName(card["_id"], card["set_name"]);
-      //print(card["set_name"]);
-    }
-
-    return cardsets;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new MainAppBar(),
       drawer: new MainDrawer(),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              child: FutureBuilder(
-                future: _generateCardsetView(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  // print(snapshot.data);
-                  if (snapshot.data == null) {
-                    return Container(child: Center(child: Text("Loading...")));
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CardsetViewCard(
-                            cardsetID: snapshot.data[index].cardsetID,
-                            cardsetName: snapshot.data[index].cardsetName,
-                            cardsetDescription:
-                                snapshot.data[index].cardsetDescription,
-                            cardsetCreateDate:
-                                snapshot.data[index].cardsetCreateDate,
-                            cardsetAccessedCount:
-                                snapshot.data[index].cardsetAccessedCount,
-                            cardsetCardCount:
-                                snapshot.data[index].cardsetCardCount);
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
-          ]),
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          SearchCardsets(),
+          CardsetViewCard(),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.pushNamed(context, NewCardset.id);
