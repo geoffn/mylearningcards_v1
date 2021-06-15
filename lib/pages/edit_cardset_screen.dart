@@ -33,118 +33,126 @@ class _EditCardsetState extends State<EditCardset> {
         backgroundColor: kSecondCardText,
       ),
       drawer: new MainDrawer(),
-      body: Column(children: <Widget>[
-        //NewCardset(),
-        Expanded(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Expanded(
-                  child: CustomScrollView(slivers: <Widget>[
-                    SliverAppBar(
-                      iconTheme: IconThemeData(
-                        color: Colors.black,
-                      ),
-                      backgroundColor: Colors.red,
-                      expandedHeight: 100,
-                      pinned: true,
-                      floating: true,
-                      flexibleSpace: FlexibleSpaceBar(
-                        title: Text(
-                          'Assigned Cards',
-                          style: TextStyle(color: Colors.black),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(children: <Widget>[
+          //NewCardset(),
+          Expanded(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Expanded(
+                    child: CustomScrollView(slivers: <Widget>[
+                      SliverAppBar(
+                        iconTheme: IconThemeData(
+                          color: Colors.black,
                         ),
-                      ),
-                    ),
-                    FutureBuilder(
-                        future: cFunctions.generateCardView(cardsetID),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          //                Whether project = projectSnap.data[index]; //todo check your model
-                          var childCount = 0;
-                          if (snapshot.connectionState !=
-                                  ConnectionState.done ||
-                              snapshot.data == null)
-                            childCount = 1;
-                          else
-                            childCount = snapshot.data.length;
-                          return SliverList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                              if (snapshot.connectionState !=
-                                  ConnectionState.done) {
-                                //todo handle state
-                                return CircularProgressIndicator(); //todo set progress bar
-                              }
-                              if (snapshot.hasData == false) {
-                                return Container();
-                              }
-                              return Card(
-                                margin: EdgeInsets.fromLTRB(30, 3, 30, 3),
-                                color: Colors.black12,
-                                child: new ListTile(
-                                  leading: Icon(Icons.delete),
-                                  title: new Text(
-                                      snapshot.data[index].cardPrimary,
-                                      style:
-                                          new TextStyle(color: Colors.white)),
-                                ),
-                              );
-                            }, childCount: childCount),
-                          );
-                        }),
-                    SliverAppBar(
-                      iconTheme: IconThemeData(
-                        color: Colors.black,
-                      ),
-                      backgroundColor: Colors.red,
-                      expandedHeight: 100,
-                      pinned: true,
-                      floating: true,
-                      flexibleSpace: FlexibleSpaceBar(
-                        title: Text(
-                          'Available Cards',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    SliverList(
-                      delegate: SliverChildListDelegate([
-                        Container(
-                          child: FutureBuilder(
-                            future: cFunctions.generateCardView(cardsetID),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              if (snapshot.data == null) {
-                                return Container(
-                                    child: Center(child: Text("Loading...")));
-                              } else
-                                return ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data.length,
-                                    itemBuilder:
-                                        (BuildContext content, int index) {
-                                      return snapshot.hasData
-                                          ? Card(
-                                              child: ListTile(
-                                                  title: Text(snapshot
-                                                      .data[index]
-                                                      .cardPrimary)),
-                                            )
-                                          : Text('No Data');
-                                    });
-                            },
+                        backgroundColor: Colors.red,
+                        expandedHeight: 100,
+                        pinned: true,
+                        floating: true,
+                        flexibleSpace: FlexibleSpaceBar(
+                          title: Text(
+                            'Assigned Cards',
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
-                      ]),
-                    )
-                  ]),
-                ),
-              ]),
-        ),
-      ]),
+                      ),
+                      FutureBuilder(
+                          future: cFunctions.generateCardView(cardsetID),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            //                Whether project = projectSnap.data[index]; //todo check your model
+                            var childCount = 0;
+                            if (snapshot.connectionState !=
+                                    ConnectionState.done ||
+                                snapshot.data == null)
+                              childCount = 1;
+                            else
+                              childCount = snapshot.data.length;
+                            return SliverList(
+                              delegate:
+                                  SliverChildBuilderDelegate((context, index) {
+                                if (snapshot.connectionState !=
+                                    ConnectionState.done) {
+                                  //todo handle state
+                                  return CircularProgressIndicator(); //todo set progress bar
+                                }
+                                if (snapshot.hasData == false) {
+                                  return Container();
+                                }
+                                return Card(
+                                  margin: EdgeInsets.fromLTRB(30, 3, 30, 3),
+                                  color: Colors.black12,
+                                  child: new ListTile(
+                                    leading: Icon(Icons.delete),
+                                    title: new Text(
+                                        snapshot.data[index].cardPrimary,
+                                        style:
+                                            new TextStyle(color: Colors.white)),
+                                  ),
+                                );
+                              }, childCount: childCount),
+                            );
+                          }),
+                      SliverAppBar(
+                        iconTheme: IconThemeData(
+                          color: Colors.black,
+                        ),
+                        backgroundColor: Colors.red,
+                        expandedHeight: 100,
+                        pinned: true,
+                        floating: true,
+                        flexibleSpace: FlexibleSpaceBar(
+                          title: Text(
+                            'Available Cards',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildListDelegate([
+                          Container(
+                            child: FutureBuilder(
+                              future: cFunctions.generateCardView(cardsetID),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                if (snapshot.data == null) {
+                                  return Container(
+                                      child: Center(child: Text("Loading...")));
+                                } else
+                                  return ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemCount: snapshot.data.length,
+                                      itemBuilder:
+                                          (BuildContext content, int index) {
+                                        return snapshot.hasData
+                                            ? Card(
+                                                child: ListTile(
+                                                    title: Text(snapshot
+                                                        .data[index]
+                                                        .cardPrimary)),
+                                              )
+                                            : Text('No Data');
+                                      });
+                              },
+                            ),
+                          ),
+                        ]),
+                      )
+                    ]),
+                  ),
+                ]),
+          ),
+        ]),
+      ),
     );
   }
 }

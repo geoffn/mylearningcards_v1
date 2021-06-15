@@ -34,6 +34,12 @@ class _RemoveAssignedCardState extends State<RemoveAssignedCard> {
       appBar: new MainAppBar(),
       drawer: new MainDrawer(),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,

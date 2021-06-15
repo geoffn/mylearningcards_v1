@@ -64,106 +64,120 @@ class _NewCardsetState extends State<NewCardset> {
       drawer: new MainDrawer(),
       body: Container(
         decoration: BoxDecoration(
-            color: kSecondCardText, borderRadius: BorderRadius.circular(10.0)),
-        margin: EdgeInsets.all(15.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text('Card Set Name', style: kCardsetCards),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        width: 300,
-                        child: TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              cardsetName = value;
-                              // print('CardSetName $cardsetName');
-                            });
-                          },
-                          onFieldSubmitted: (value) {
-                            setState(() {
-                              cardsetName = value;
-                            });
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a name';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            helperText: 'Card Set Name *',
-                            counterText: '0 characters',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Text('Card Set Description', style: kCardsetCards),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        width: 300,
-                        child: TextFormField(
-                          onChanged: (value) {
-                            setState(() {
-                              cardsetDescription = value;
-                              //  print('CardSetDescription $cardsetDescription');
-                            });
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              cardsetDescription = value != null ? value : "";
-                              // print('CardSetDescription $cardsetDescription');
-                            });
-                          },
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            helperText: 'Card Set Name',
-                            counterText: '0 characters',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        width: 300,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _addCardSet();
-                            }
-                          },
-                          child: Text("Submit"),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ],
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
           ),
+        ),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  color: kSecondCardText,
+                  borderRadius: BorderRadius.circular(10.0)),
+              margin: EdgeInsets.all(15.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            Text('Card Set Name', style: kCardsetCards),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              width: 300,
+                              child: TextFormField(
+                                onChanged: (value) {
+                                  setState(() {
+                                    cardsetName = value;
+                                    // print('CardSetName $cardsetName');
+                                  });
+                                },
+                                onFieldSubmitted: (value) {
+                                  setState(() {
+                                    cardsetName = value;
+                                  });
+                                },
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter a name';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  helperText: 'Card Set Name *',
+                                  counterText: '0 characters',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Text('Card Set Description', style: kCardsetCards),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              width: 300,
+                              child: TextFormField(
+                                onChanged: (value) {
+                                  setState(() {
+                                    cardsetDescription = value;
+                                    //  print('CardSetDescription $cardsetDescription');
+                                  });
+                                },
+                                onSaved: (value) {
+                                  setState(() {
+                                    cardsetDescription =
+                                        value != null ? value : "";
+                                    // print('CardSetDescription $cardsetDescription');
+                                  });
+                                },
+                                decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  helperText: 'Card Set Name',
+                                  counterText: '0 characters',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              width: 300,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _addCardSet();
+                                  }
+                                },
+                                child: Text("Submit"),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
