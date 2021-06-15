@@ -25,13 +25,21 @@ class _WelcomeMainState extends State<WelcomeMain> {
     return Scaffold(
       appBar: new MainAppBar(),
       drawer: new MainDrawer(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          SearchCardsets(),
-          CardsetViewCard(),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SearchCardsets(),
+            CardsetViewCard(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

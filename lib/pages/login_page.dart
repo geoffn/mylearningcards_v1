@@ -66,7 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                       if (user != null) {
                         print(user.user);
                       }
-                      Navigator.pushNamed(context, WelcomeMain.id);
+                      Navigator.pushReplacementNamed(context, WelcomeMain.id,
+                          arguments: '');
                     } catch (e) {
                       print(e);
                     }
