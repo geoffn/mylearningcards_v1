@@ -8,6 +8,7 @@ import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 import 'package:mylearningcards_v1/components/cardset_banner.dart';
+import 'package:mylearningcards_v1/pages/edit_add_new_card_screen.dart';
 
 class CardViewMain extends StatefulWidget {
   static String id = 'cardview_screen';
@@ -51,7 +52,7 @@ class _CardViewMainState extends State<CardViewMain> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushReplacementNamed(context, EditCardsetOptions.id,
+          Navigator.pushReplacementNamed(context, EditAddNewCard.id,
               arguments: cardsetID);
         },
         label: const Text('Edit Set'),

@@ -36,7 +36,7 @@ class _EditCardsetOptionsState extends State<EditCardsetOptions> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("images/background.jpg"),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Column(

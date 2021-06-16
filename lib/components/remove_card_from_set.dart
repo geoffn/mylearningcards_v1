@@ -68,7 +68,7 @@ class _RemoveCardFromSetState extends State<RemoveCardFromSet> {
                                 onTap: () async {
                                   print("icon tapped");
                                   print(
-                                      "id of card: ${snapshot.data[index].cardID} for cardset ${widget.cardsetID}");
+                                      "id of card: ${snapshot.data[index]["_id"]} for cardset ${widget.cardsetID}");
                                   cFunctions.removeCardFromCardsetFunction(
                                       widget.cardsetID,
                                       snapshot.data[index]['_id']);

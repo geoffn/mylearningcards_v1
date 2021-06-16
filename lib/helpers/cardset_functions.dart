@@ -12,6 +12,8 @@ class CardsetFunctions {
     final loggedInUser = uFunctions.getCurrentUser();
     List allCards;
 
+    print('generateCardView: $cardsetID');
+
     String? newID = "";
     //print('LoggedIn: $loggedInUser');
     if (loggedInUser != null) {

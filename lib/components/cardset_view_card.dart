@@ -22,7 +22,9 @@ class _CardsetViewCardState extends State<CardsetViewCard> {
       final map = route.settings.arguments;
       print('Search $map');
 
-      searchTerm = map.toString();
+      if (map != null) {
+        searchTerm = map.toString();
+      }
 
       print('searchterm $searchTerm');
     }

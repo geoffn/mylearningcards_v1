@@ -6,6 +6,7 @@ import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
 import 'dart:convert';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/conf/conf_dev.dart';
+import 'package:mylearningcards_v1/pages/edit_add_new_card_screen.dart';
 
 class AddNewCard extends StatefulWidget {
   static String id = 'AddNewCard';
@@ -87,6 +88,8 @@ class _AddNewCardState extends State<AddNewCard> {
       print(response.statusCode);
       print(response.body);
     } catch (e) {}
+    Navigator.pushReplacementNamed(context, EditAddNewCard.id,
+        arguments: widget.cardsetID);
   }
 
   @override

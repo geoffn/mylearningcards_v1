@@ -8,6 +8,8 @@ import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/helpers/cardset_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
+import 'package:mylearningcards_v1/constants.dart';
+import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
 
 class EditAddNewCard extends StatefulWidget {
   static String id = 'edit_add_new_card';
@@ -29,17 +31,7 @@ class _EditAddNewCardState extends State<EditAddNewCard> {
     if (route != null) {
       final map = route.settings.arguments;
       print('PassedCardSetID $map');
-      if (map.toString().contains('/')) {
-        var tempString = map.toString().replaceFirst('{', '');
-        tempString = tempString.replaceFirst('}', '');
-        var searchParam = tempString.split('/');
-        cardsetID = searchParam[0];
-        searchTerm = searchParam[1];
-      } else {
-        cardsetID = map.toString();
-      }
-      print('cardsetid $cardsetID');
-      print('searchterm $searchTerm');
+      cardsetID = map.toString();
     }
 
     return Scaffold(
@@ -62,6 +54,15 @@ class _EditAddNewCardState extends State<EditAddNewCard> {
             RemoveCardFromSet(cardsetID: cardsetID),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, AddCreatedCard.id,
+              arguments: cardsetID);
+        },
+        label: const Text('Add Existing Card'),
+        icon: const Icon(Icons.edit),
+        backgroundColor: kButtonColor,
       ),
     );
   }
