@@ -4,6 +4,8 @@ import 'package:mylearningcards_v1/pages/add_created_card_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_add_new_card_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_screen.dart';
 import 'package:mylearningcards_v1/pages/edit_cardset_options.dart';
+import 'package:mylearningcards_v1/pages/login_with_email_screen.dart';
+import 'package:mylearningcards_v1/pages/register_user_with_email_screen.dart';
 import 'package:mylearningcards_v1/pages/remove_assigned_card_screen.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
@@ -42,6 +44,8 @@ class MyLearningCards extends StatelessWidget {
         EditAddNewCard.id: (context) => EditAddNewCard(),
         AddCreatedCard.id: (context) => AddCreatedCard(),
         RemoveAssignedCard.id: (context) => RemoveAssignedCard(),
+        LoginWithEmail.id: (context) => LoginWithEmail(),
+        RegisterUserWithEmail.id: (context) => RegisterUserWithEmail(),
       },
     );
   }

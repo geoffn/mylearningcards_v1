@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/helpers/auth_with_google.dart';
 import 'package:mylearningcards_v1/constants.dart';
-import 'package:mylearningcards_v1/pages/welcome_main_screen.dart';
+import 'package:mylearningcards_v1/pages/auth_check_redirect.dart';
+import 'package:mylearningcards_v1/pages/register_user_with_email_screen.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = 'login_screen';
@@ -66,8 +67,8 @@ class _LoginPageState extends State<LoginPage> {
                       if (user != null) {
                         print(user.user);
                       }
-                      Navigator.pushReplacementNamed(context, WelcomeMain.id,
-                          arguments: '');
+                      Navigator.pushReplacementNamed(
+                          context, AuthCheckRedirect.id);
                     } catch (e) {
                       print(e);
                     }
@@ -96,11 +97,43 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Container(
+            //         padding: EdgeInsets.all(10.0),
+            //         margin: EdgeInsets.all(10.0),
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(10.0),
+            //           color: kSecondCardText,
+            //         ),
+            //         child: Row(
+            //             crossAxisAlignment: CrossAxisAlignment.center,
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               Image.asset(
+            //                 'images/facebook.png',
+            //                 width: 30,
+            //                 height: 30,
+            //               ),
+            //               SizedBox(
+            //                 width: 10,
+            //               ),
+            //               Text('Sign in with Facebook')
+            //             ])),
+            //   ],
+            // ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                GestureDetector(
+                  onTap: () async {
+                    Navigator.pushReplacementNamed(
+                        context, RegisterUserWithEmail.id);
+                  },
+                  child: Container(
                     padding: EdgeInsets.all(10.0),
                     margin: EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
@@ -108,36 +141,22 @@ class _LoginPageState extends State<LoginPage> {
                       color: kSecondCardText,
                     ),
                     child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'images/facebook.png',
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text('Sign in with Facebook')
-                        ])),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    padding: EdgeInsets.all(10.0),
-                    margin: EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: kSecondCardText,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'images/google.png',
+                          width: 30,
+                          height: 30,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('Sign in with Email and Password')
+                      ],
                     ),
-                    child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text('Sign and with Email Password')])),
+                  ),
+                ),
               ],
             ),
           ],

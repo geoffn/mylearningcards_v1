@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,6 +10,8 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance;
     final user = _auth.currentUser;
+    final UserFunctions uFunctions = new UserFunctions();
+
     String userName;
     String userEmail;
     String userPicture;
@@ -41,7 +44,13 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: GestureDetector(
-                onTap: () {
+                onTap: () async {
+                  await uFunctions.signOutWithGoogle();
+                  if (_auth.currentUser != null) {
+                    print('User Still Logged In');
+                  } else {
+                    print('User Logged OUT');
+                  }
                   Navigator.pushReplacementNamed(context, LoginPage.id);
                 },
                 child: Icon(Icons.account_circle)),
