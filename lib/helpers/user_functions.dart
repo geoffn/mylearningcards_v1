@@ -59,6 +59,9 @@ class UserFunctions {
     }
   }
 
+  void signUpUser(String email, String photoURL, String userID, String phone,
+      String provider) {}
+
   Future<Null> signOutWithGoogle() async {
     // Sign out with firebase
     await _auth.signOut();
