@@ -144,15 +144,50 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'images/google.png',
-                          width: 30,
-                          height: 30,
+                        Icon(
+                          Icons.email,
+                          color: Color(0xFFFFEE93),
+                          size: 30.0,
                         ),
                         SizedBox(
                           width: 10,
                         ),
                         Text('Sign in with Email and Password')
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    Navigator.pushReplacementNamed(
+                        context, RegisterUserWithEmail.id);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: kSecondCardText,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.person_add,
+                          color: Color(0xFFFFEE93),
+                          size: 30.0,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text('New User Registration')
                       ],
                     ),
                   ),

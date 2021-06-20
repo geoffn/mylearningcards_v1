@@ -32,74 +32,14 @@ class _RegisterUserWithEmailState extends State<RegisterUserWithEmail> {
   ]);
 
   void _registerUsersEmail() async {
-    final AuthWithEmail fAuthEmail = AuthWithEmail();
     final UserFunctions uFunctions = UserFunctions();
 
+    bool userCreated = await uFunctions.signUpUser(userEmail, userPassword);
     //register user with firebase
-    await fAuthEmail.signUp(email: userEmail, password: userPassword);
-
-    //Store user info in mongo
-    var token = "";
-    var body = "";
-    final _auth = FirebaseAuth.instance;
-    final user = _auth.currentUser;
-    String uid = "";
-    String display_name = "";
-    String photo_url = "";
-    String providerId = "";
-    String email = "";
-
-    if (user != null) {
-      print('LoginID: ${user.providerData[0].uid}');
-
-      token = JWTGenerator.createJWT(user.providerData[0].uid);
-      uid = user.providerData[0].uid ?? "";
-      display_name = user.providerData[0].displayName ?? "";
-      photo_url = user.providerData[0].photoURL ?? "";
-      providerId = user.providerData[0].providerId;
-      email = user.providerData[0].email ?? "";
-
-      if (user.providerData[0].email != null &&
-          user.providerData[0].uid != null) {
-        body = jsonEncode(<String, String>{
-          'uid': uid,
-          'display_name': display_name,
-          'photo_url': photo_url,
-          'provider': providerId,
-          'email': email
-        });
-        print("body $body");
-      }
-    }
-    try {
-      http.Response response = await http.post(
-        Uri.parse('$cardsAPI/user'),
-        // Send authorization headers to the backend.
-        headers: {
-          'Authorization': 'Bearer $token',
-          "Content-Type": "application/json"
-        },
-        body: body,
-      );
-    } catch (e) {
-      print(e);
-    }
-
-    try {
-      String uriEncoded = Uri.encodeFull('$cardsAPI/loginuser/$uid');
-      http.Response response = await http.post(
-        Uri.parse(uriEncoded),
-        // Send authorization headers to the backend.
-        headers: {
-          'Authorization': 'Bearer $token',
-        },
-      );
-      print('$cardsAPI/loginuser/$uid ${response.statusCode}');
-    } catch (e) {
-      print(e);
-    }
     //Redirect to authredirect
-
+    if (userCreated) {
+      print('User Created');
+    }
     Navigator.pushReplacementNamed(context, AuthCheckRedirect.id);
   }
 
