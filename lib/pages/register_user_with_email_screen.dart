@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:mylearningcards_v1/helpers/auth_with_email.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
-import 'package:mylearningcards_v1/conf/conf_dev.dart';
 import 'package:mylearningcards_v1/pages/auth_check_redirect.dart';
 
 class RegisterUserWithEmail extends StatefulWidget {
@@ -46,7 +40,10 @@ class _RegisterUserWithEmailState extends State<RegisterUserWithEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(),
+      appBar: AppBar(
+        title: Text('MyLearningCards', style: kCardsetCards),
+        backgroundColor: kSecondCardText,
+      ),
       body: Container(
         decoration: BoxDecoration(
             color: kSecondCardText, borderRadius: BorderRadius.circular(10.0)),

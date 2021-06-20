@@ -23,6 +23,7 @@ class AuthWithEmail {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       return null;
     } on FirebaseAuthException catch (e) {
+      print(e.message);
       return e.message;
     }
   }

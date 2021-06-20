@@ -67,6 +67,32 @@ class UserFunctions {
     }
   }
 
+  Future<bool> signInUser(String userEmail, String userPassword) async {
+    final AuthWithEmail fAuthEmail = AuthWithEmail();
+    bool userLoggedIn = false;
+    String uid = "";
+    var signedInSuccess =
+        await fAuthEmail.signIn(email: userEmail, password: userPassword);
+
+    final _auth = FirebaseAuth.instance;
+    final user = _auth.currentUser;
+    if (signedInSuccess != null) {
+      userLoggedIn = false;
+      return userLoggedIn;
+    }
+    if (user != null) {
+      print('LoginID: ${user.providerData[0].uid}');
+      uid = user.providerData[0].uid ?? "missing";
+    }
+    try {
+      loginUser(uid);
+      userLoggedIn = true;
+    } catch (e) {
+      print(e);
+    }
+    return userLoggedIn;
+  }
+
   Future<bool> signUpUser(String userEmail, String userPassword) async {
     final AuthWithEmail fAuthEmail = AuthWithEmail();
 

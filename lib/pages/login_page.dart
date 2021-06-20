@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/helpers/auth_with_google.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/pages/auth_check_redirect.dart';
+import 'package:mylearningcards_v1/pages/login_with_email_screen.dart';
 import 'package:mylearningcards_v1/pages/register_user_with_email_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -130,8 +131,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    Navigator.pushReplacementNamed(
-                        context, RegisterUserWithEmail.id);
+                    Navigator.pushReplacementNamed(context, LoginWithEmail.id);
                   },
                   child: Container(
                     padding: EdgeInsets.all(10.0),
