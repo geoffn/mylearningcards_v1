@@ -70,6 +70,8 @@ class CardsetFunctions {
     String searchParam = "/*";
     String searchURL = "";
     String? newID = "";
+    http.Response response;
+
     //print('LoggedIn: $loggedInUser');
     if (loggedInUser != null) {
       if (loggedInUser.providerData[0].uid != null) {
@@ -85,21 +87,32 @@ class CardsetFunctions {
 
     if (searchTerm != null && searchTerm != '') {
       print('genereate2 $searchTerm');
-      searchParam = '/$searchTerm';
-      searchURL = '$cardsAPI/cardsetsearch/$newID$searchParam';
+      searchParam = searchTerm;
+      searchURL = '$cardsAPI/cardsetfilter';
+      var body = jsonEncode({'search': searchParam});
+      response = await http.post(
+        Uri.parse(searchURL),
+        // Send authorization headers to the backend.
+        headers: {
+          'authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: body,
+      );
     } else {
       searchURL = '$cardsAPI/cardsetforowner';
+      print('Search Term : $searchTerm');
+      print('Search URL: $searchURL');
+      response = await http.get(
+        Uri.parse(searchURL),
+        // Send authorization headers to the backend.
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
     }
 
-    print('Search Term : $searchTerm');
-    print('Search URL: $searchURL');
-    http.Response response = await http.get(
-      Uri.parse(searchURL),
-      // Send authorization headers to the backend.
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-    );
     //print(response.statusCode);
     //print(response.body);
 
@@ -123,6 +136,7 @@ class CardsetFunctions {
     final loggedInUser = uFunctions.getCurrentUser();
     String searchParam = "/*";
     String searchURL = "";
+    http.Response response;
 
     String? newID = "";
     //print('LoggedIn: $loggedInUser');
@@ -138,20 +152,33 @@ class CardsetFunctions {
 
     if (searchTerm != null && searchTerm != '') {
       searchParam = '/$searchTerm';
-      searchURL = '$cardsAPI/cardsearch/$newID$searchParam';
+      searchURL = '$cardsAPI/cardfilter';
+      print('Search Term : $searchTerm');
+      print('Search URL: $searchURL');
+      var body = jsonEncode({'search': searchTerm});
+      response = await http.post(
+        Uri.parse(searchURL),
+        // Send authorization headers to the backend.
+        headers: {
+          'authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: body,
+      );
     } else {
-      searchURL = '$cardsAPI/card/$newID';
+      searchURL = '$cardsAPI/cardbyowner';
+      print('Search Term : $searchTerm');
+      print('Search URL: $searchURL');
+      response = await http.get(
+        Uri.parse(searchURL),
+        // Send authorization headers to the backend.
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
     }
 
-    print('Search Term : $searchTerm');
-    print('Search URL: $searchURL');
-    http.Response response = await http.get(
-      Uri.parse(searchURL),
-      // Send authorization headers to the backend.
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-    );
     print(response.statusCode);
     //print(response.body);
 

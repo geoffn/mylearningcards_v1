@@ -34,6 +34,10 @@ const kAppBar = TextStyle(
   color: Colors.white,
 );
 
+const kMainDrawerListTile = TextStyle(
+  fontSize: 20,
+  color: kSecondCardText,
+);
 const kCardsetBackCards = TextStyle(
   fontSize: 30.0,
   color: Color(0xFFFFEE93),

@@ -24,19 +24,19 @@ class CardViewCard extends StatefulWidget {
 class _CardViewCardState extends State<CardViewCard> {
   User? loggedInUser;
   final uFunctions = UserFunctions();
-  String cardsetID = "";
+
   CardsetFunctions cFunctions = CardsetFunctions();
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
-        future: cFunctions.generateCardView(cardsetID),
+        future: cFunctions.generateCardView(widget.cardsetID),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          print(snapshot.data);
           if (snapshot.data == null) {
             return Container(child: Center(child: Text("Loading...")));
           } else {
+            print('Flip: ${snapshot.data}');
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {

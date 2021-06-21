@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mylearningcards_v1/helpers/user_functions.dart';
-import 'package:mylearningcards_v1/pages/login_page.dart';
+import 'package:mylearningcards_v1/pages/auth_check_redirect.dart';
+import 'package:mylearningcards_v1/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -12,18 +13,15 @@ class MainDrawer extends StatelessWidget {
     final user = _auth.currentUser;
     final UserFunctions uFunctions = new UserFunctions();
 
-    String userName;
-    String userEmail;
-    String userPicture;
+    String userName = "";
+    String userEmail = "";
+    String userPicture = "";
     if (user != null) {
-      userName = user.providerData[0].displayName ?? "Missing";
+      userName = user.providerData[0].displayName ?? "";
       userEmail = user.providerData[0].email ?? "Missing";
       userPicture = user.providerData[0].photoURL ?? "Missing";
-    } else {
-      userName = "Missing";
-      userEmail = "Missing";
-      userPicture = "Missing";
     }
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -40,7 +38,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.message),
-            title: Text('Messages'),
+            title: Text('Messages', style: kMainDrawerListTile),
           ),
           ListTile(
             leading: GestureDetector(
@@ -51,14 +49,14 @@ class MainDrawer extends StatelessWidget {
                   } else {
                     print('User Logged OUT');
                   }
-                  Navigator.pushReplacementNamed(context, LoginPage.id);
+                  Navigator.pushReplacementNamed(context, AuthCheckRedirect.id);
                 },
                 child: Icon(Icons.account_circle)),
-            title: Text(userName),
+            title: Text("Log Out", style: kMainDrawerListTile),
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            title: Text('Settings', style: kMainDrawerListTile),
           ),
         ],
       ),
