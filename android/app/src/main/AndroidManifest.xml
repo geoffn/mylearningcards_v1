@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="outdoorcoders.com.mylearningcards_v1">
+    package="outdoorcoders.com.mylearningcards">
    <application
-        android:label="mylearningcards_v1"
+        android:label="mylearningcards"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

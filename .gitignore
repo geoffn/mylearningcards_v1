@@ -50,4 +50,7 @@ app.*.map.json
 
 /ios/Runner/GoogleService-Info.plist
 
+/android/key.properties
+
+
 
