@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mylearningcards_v1/helpers/user_functions.dart';
 import 'package:mylearningcards_v1/constants.dart';
 import 'package:mylearningcards_v1/components/cardset_view_card.dart';
-import 'package:mylearningcards_v1/conf/conf_dev.dart';
-import 'package:http/http.dart' as http;
-import 'package:mylearningcards_v1/helpers/JWTGenerator.dart';
-import 'dart:convert';
 import 'package:mylearningcards_v1/components/main_drawer.dart';
 import 'package:mylearningcards_v1/pages/new_cardset.dart';
 import 'package:mylearningcards_v1/components/main_appbar.dart';
